@@ -1,0 +1,11 @@
+﻿@model IList<DashboardItem>
+@{
+    ViewData["Title"] = "SWC Tracker";
+}
+
+<ul>
+    @foreach (var record in Model)
+    {
+        <li>@record.Name</li>
+    }
+</ul>
