@@ -36,23 +36,17 @@
                                             <li><a href="#step-10">Personal Details</a></li>
                                             <li><a href="#step-11">Referral Details</a></li>
                                             <li><a href="#step-12">Employer Detail</a></li>
-                                            <li><a href="#step-13">Employement Details</a></li>
+                                            <li><a href="#step-13">Employment Details</a></li>
                                             <li><a href="#step-14">Complaint</a></li>
                                         </ul>
                                         <div>
                             @Html.Partial("_PersonalDetail")
                             @Html.Partial("_ReferrerDetail")
-                                           
-                                            <div id="step-13" class="">
-                                                <div class="mb-0 justify-content-end">
-                                                    <div class="">
-                                                        <label class="custom-control custom-checkbox">
-                                                            <input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
-                                                            <span class="custom-control-label">I agree terms & Conditions</span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
+                            @Html.Partial("_Organisation")
+                            @Html.Partial("_EmploymentDetail")
+                            @Html.Partial("_ComplaintDetail")
+
+                                        
                                         </div>
                                     </div>
                                 </div>

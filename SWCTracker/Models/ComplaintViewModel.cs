@@ -13,7 +13,9 @@ namespace SWCTracker.Models
         public PersonViewModel? Employee { get; set; }
 
         public PersonViewModel? NextOfKin { get; set; }
-        public PersonViewModel? Employer { get; set; }
+        public OrganisationViewModel? Organisation { get; set; }
+        public EmploymentDetailViewModel? EmploymentDetail { get; set; }
+        public ComplaintDetailViewModel? ComplaintDetail { get; set; }
         public IEnumerable<SelectListItem>? Origins { get; set; }
     }
 }

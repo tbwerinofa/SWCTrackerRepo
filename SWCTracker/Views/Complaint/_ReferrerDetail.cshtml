@@ -1,25 +1,103 @@
 ﻿@model ComplaintViewModel
-<div id="step-12" class="">
-    <form>
-        <div class="mb-3">
-            <label>User Name</label>
-            <input type="text" class="form-control" id="inputtext" placeholder="Enter User Name">
-        </div>
-        <div class="mb-3">
-            <label>Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail8" placeholder="Enter email address">
-        </div>
-        <div class="mb-3">
-            <label>Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword9" placeholder="Password">
-        </div>
-        <div class="mb-0 justify-content-end">
-            <div class="">
-                <label class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
-                    <span class="custom-control-label">Check me Out</span>
-                </label>
-            </div>
-        </div>
-    </form>
+<div id="step-11" class="">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <label class="radio field-required" for="8">Referral Party</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="list-group">
+                                <li class="list-group-item subscription-list subscriptiontype-inputs clearfix">
+                                    <div class="row">
+                                        <span class="col-md-8 col-sm-8">
+                                            <label class="radio field-required" for="6">
+                                                I/We the undersigned refer the following complaint to the Bargaining COuncil to be investigated
+                                            </label>
+                                        </span>
+                                        <span class="col-md-4 col-sm-4">
+                                            <label class="radio-inline">
+                                                <input type="radio" class=" book-class subscription-class" name="35" value="true"> Employee
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" class=" book-class subscription-class" name="35" value="false">TradeUnion
+                                            </label>
+                                        </span>
+                                    </div>
+                                </li>
+                                <li class="list-group-item subscription-list subscriptiontype-inputs clearfix">
+                                    <div class="row">
+                                        <span class="col-md-8 col-sm-8">
+                                            <label class="radio field-required" for="8">
+                                                If the referring party is a Trade Union, please indicate if you are a
+                                                party to the Bargaining Council
+                                            </label>
+                                        </span>
+                                        <span class="col-md-4 col-sm-4">
+
+
+                                            <input type="hidden" data-organisation="false" data-name="ABMI Reference Library 2021 Print [Soft Cover]- PRINT : ABMI Ref Library 2021 ISBN - 9781928534891" data-price="1725.00" data-quantity="1" class="subscriptionIds" name="subscriptionIds" value="77">
+
+                                            <label class="radio-inline">
+                                                <input type="radio" class=" hasquantity subscription-class" name="77" value="true"> Yes
+                                            </label>
+                                            <label class="radio-inline">
+                                                <input type="radio" class=" hasquantity subscription-class" name="77" value="false">No
+                                            </label>
+                                        </span>
+                                    </div>
+                                    <div class="row">
+                                        <span class="col-md-10 col-sm-10"></span>
+                                        <span class="col-md-2 col-sm-2">
+                                            <input id="item_ID" name="item.ID" type="hidden" value="77">
+                                            <span class="field-validation-valid" data-valmsg-for="item.ID" data-valmsg-replace="true"></span>
+                                        </span>
+                                    </div>
+
+                                    <ul class="list-group qty-list" style="display:none">
+
+                                        <li class="list-group-item clearfix">
+                                            <div class="row">
+                                                <span class="col-md-10 col-sm-10">
+                                                    <label class="radio field-required" for="0">Quantity</label>
+                                                </span>
+                                                <span class="col-md-2 col-sm-2">
+                                                    <label class="radio-inline">
+                                                        <input type="text" maxlength="3" max="100" min="1" class="form-control item-quantity number-only" name="Quantity" id="Quantity">
+                                                    </label>
+                                                </span>
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item clearfix" id="span-qty-required" style="display:none">
+                                            <div class="alert alert-warning pull-right">
+                                                <span class="glyphicon glyphicon-info-sign"></span>&nbsp; Quantity must be greater than 0
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </li>
+                <li class="list-group-item subscription-list subscriptiontype-inputs clearfix">
+                    <div class="row">
+                        <span class="col-md-8 col-sm-8">
+                            <label class="radio field-required" for="8">
+                               Trade Union
+                            </label>
+                        </span>
+                        <span class="col-md-4 col-sm-4">
+
+
+                            <label class="radio-inline">
+                                <input type="radio" class=" hasquantity subscription-class" name="77" value="true"> NUM
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" class=" hasquantity subscription-class" name="77" value="false">BCAWU
+                            </label>
+                        </span>
+                    </div>
+                </li>
+                            </ul>
+
+
+                        </div>
+                    </div>
 </div>
