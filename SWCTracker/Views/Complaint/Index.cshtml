@@ -20,6 +20,21 @@
                             </ol>
                         </div>
                     </div>
+
+    <div id="divSaveResults" class="alert" style="display:none">
+
+        <span id="spanGlyphicon" class='glyphicon'></span> &nbsp;<strong>
+            <span id="spanSaveResults"></span>
+        </strong>
+    </div>
+    <div id="save-confirmation" style="display:none">
+        <div class="alert alert-info">
+            Your complaint has been submitted successfully!!
+        </div>
+
+    </div>
+
+
                     <!--End Page header-->
                     <!--row open-->
                     <div class="row">
@@ -29,7 +44,13 @@
                                     <h3 class="card-title">Complaint Details</h3>
                                 </div>
                                 <div class="card-body">
-                                    <div id="smartwizard-3">
+                                                         @using (Html.BeginForm("SaveModel", "Complaint", FormMethod.Post, new { id = "form-main", @class = "for-horizontal", role = "form" }))
+        {
+                        <div asp-validation-summary="All" class="text-danger"></div>
+           
+                    <div id="complaintWizard">
+     
+            
                                         <ul>
                                             <li><a href="#step-10">Personal Details</a></li>
                                             <li><a href="#step-11">Referral Details</a></li>
@@ -44,11 +65,17 @@
 
                                         
                                         </div>
-                                    </div>
+
+                        </div>
+                    }
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!--row closed-->
                 </div>
-           
+
+@section scripts{
+    <script src="~/js/basiccrud.js"></script>
+<script src="~/js/complaint.js"></script>
+}

@@ -13,12 +13,17 @@ namespace SWCTracker.API
             _client = client;
             _client.BaseAddress = new System.Uri(config.GetValue<string>("NUMConsecApi"));
         }
+
+        #region Read
         public ComplaintViewModel GetModel()
         {
             var requestUri = "subsector";
             AddressViewModel addressModel = GetAddressModel();
             ComplaintViewModel model = new ComplaintViewModel();
-            model.ComplaintDetail = new ComplaintDetailViewModel{ ComplaintTypes = BuildComplaintTypes(),Sectors = BuildSectors() };
+            model.ComplaintDetail = new ComplaintDetailViewModel{
+                ComplaintTypes = BuildComplaintTypes(),
+                Sectors = BuildSectors()
+            };
 
             model.EmploymentDetail = new EmploymentDetailViewModel{ Occupations = IQueryableExtensions.Default_DropDownItem(), Address = addressModel };
 
@@ -62,5 +67,16 @@ namespace SWCTracker.API
             };
             return selectList;
         }
+
+        #endregion
+
+        #region Save
+        public SaveResult SaveModel(ComplaintViewModel model)
+        {
+            SaveResult saveResult = new SaveResult{IsSuccess=true };
+
+            return saveResult;
+        }
+        #endregion
     }
 }

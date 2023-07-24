@@ -62,42 +62,47 @@
     <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-12">
                     <h4>Details of Dispute procedures followed Address</h4>
+             </div>
+           
+        </div>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+
+
+
+                    <input id="inputProcessCompliant" type="hidden" value="@Model.ComplaintDetail.ProcessCompliant.ToBoolString()" />
+                    <div class="form-group row">
+                        @Html.LabelFor(model => model.ComplaintDetail.ProcessCompliant, new { @class = "control-label col-md-8 input-sm" })
+                        <div class="col-md-4">
+                            <label class="radio-inline">
+                                <input type="radio" name="ComplaintDetail.ProcessCompliant" value="true"> Yes
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="ComplaintDetail.ProcessCompliant" value="false"> No
+                            </label>
+                        </div>
+                    </div><!--form group-->
+
                 </div>
 
-
-                    <div class="col-md-8">
-                    <input id="inputProcessCompliant" type="hidden" value="@Model.ComplaintDetail.ProcessCompliant.ToBoolString()" />
-                        <div class="form-group">
-                        @Html.LabelFor(model => model.ComplaintDetail.ProcessCompliant, new { @class = "control-label col-md-8 input-sm" })
-                            <div class="col-md-4">
-                                <label class="radio-inline">
-                                <input type="radio" name="ComplaintDetail.ProcessCompliant" value="true"> Yes
-                                </label>
-                                <label class="radio-inline">
-                                <input type="radio" name="ComplaintDetail.ProcessCompliant" value="false"> No
-                                </label>
-                            </div>
-                        </div><!--form group-->
-
-                    </div>
-
-            </div><!--div-row-is same as head office check-->
-        </div>
-        <div id="div-postal-address" style="display:none" class="card-body">
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+        <div id="div-process-compliant" style="display:none" class="card-body">
 
 
             <div class="row">
 
-                <div class="col">
-
-                    <div class="form-group row">
-                        @Html.LabelFor(model => model.ComplaintDetail.ProcessDescription, htmlAttributes: ModelConstant.LabelRequired)
+                <div class="col-md-4">
+                                <label class="control-label col-md-8 input-sm" for="ComplaintDetail_ProcessCompliant">Describe the procedures followed:</label>
+                    </div>
                         <div class="col-md-8">
                             @Html.TextAreaFor(model => model.ComplaintDetail.ProcessDescription, new { @class = "form-control input-sm", @rows = 6 })
                             @Html.ValidationMessageFor(model => model.ComplaintDetail.ProcessDescription)
-                        </div>
                     </div>
 
                 </div> <!--div-col-md-6 -->
@@ -106,7 +111,8 @@
 
         </div> <!--div-col-md-12 -->
     </div><!--Panel -->
-
+    </div>
+    </div>
 
 
     <div class="card border-left-primary">
