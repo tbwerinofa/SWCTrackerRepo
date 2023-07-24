@@ -1,7 +1,64 @@
 ﻿@model ComplaintViewModel
 
-    <div id="step-14" class="">
+    <div id="step-13" class="">
 
+    <div class="card border-left-primary">
+        <div class="card-header">
+            <h3 class="card-title">Nature Of Complaint</h3>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="form-group mb-4 row">
+                            @Html.LabelFor(model => model.ComplaintDetail.SectorIds, htmlAttributes: ModelConstant.LabelRequired)
+                            <div class="col-md-8">
+                                <div class="custom-controls-inline">
+                                    @foreach (var selectListItem in Model.ComplaintDetail.Sectors)
+                                    {
+                                        <label class="custom-control custom-checkbox">
+
+                                            <input type="checkbox" class="custom-control-input" name="SectorIds" value="@selectListItem.Value">
+                                            <span class="custom-control-label">@selectListItem.Text</span>
+                                        </label>
+                                    }
+                                </div>
+                                @Html.ValidationMessageFor(model => model.ComplaintDetail.ComplaintTypeIds)
+                            </div>
+                        </div><!--First Name-->
+                    </div>
+                    <div class="row">
+                    <div class="form-group mb-4 row">
+                        @Html.LabelFor(model => model.ComplaintDetail.ComplaintTypeIds, htmlAttributes: ModelConstant.LabelRequired)
+                        <div class="col-md-8">
+                            <div class="custom-controls-inline">
+                                @foreach (var selectListItem in Model.ComplaintDetail.ComplaintTypes)
+                                {
+                                <label class="custom-control custom-checkbox">
+
+                                        <input type="checkbox" class="custom-control-input" name="@selectListItem.Value" value="@selectListItem.Value">
+                                        <span class="custom-control-label">@selectListItem.Text</span>
+                                </label>
+                                    }
+                            </div>
+                            @Html.ValidationMessageFor(model => model.ComplaintDetail.ComplaintTypeIds)
+                        </div>
+                    </div><!--First Name-->
+                        </div>
+                    <div class="row">
+                            <div class="form-group mb-4 row">
+                            @Html.LabelFor(model => model.ComplaintDetail.Summary, htmlAttributes: ModelConstant.LabelRequired)
+                                <div class="col-md-8">
+                                @Html.TextAreaFor(model => model.ComplaintDetail.Summary, new { @class = "form-control input-sm", @rows = 6 })
+                                @Html.ValidationMessageFor(model => model.ComplaintDetail.Summary)
+                                </div>
+                            </div>
+
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="card">
         <div class="card-header">
             <div class="row">
@@ -50,42 +107,49 @@
         </div> <!--div-col-md-12 -->
     </div><!--Panel -->
 
-    <div class="m-0">
-        <div class="form-label">Sector</div>
-        <div class="custom-controls-stacked">
-            <label class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" name="example-checkbox1" value="option1" checked="">
-                <span class="custom-control-label">Civil Engineering</span>
-            </label>
-            <label class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
-                <span class="custom-control-label">Plant Hire</span>
-            </label>
-            <label class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" name="example-checkbox3" value="option3" disabled="">
-                <span class="custom-control-label">Open Cast Mining</span>
-            </label>
-            <label class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" name="example-checkbox4" value="option4" checked="" disabled="">
-                <span class="custom-control-label">Temporary Employment Services</span>
-            </label>
+
+
+    <div class="card border-left-primary">
+        <div class="card-header">
+            <h3 class="card-title">Capturer Details</h3>
         </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+
+    <div class="row">
+        <div class="form-group mb-4 row">
+            @Html.LabelFor(model => model.ComplaintDetail.Capturer, htmlAttributes: ModelConstant.LabelRequired)
+            <div class="col-md-8">
+                    @Html.EditorFor(model => model.ComplaintDetail.Capturer, new { htmlAttributes = ModelConstant.FormControlInp })
+                    @Html.ValidationMessageFor(model => model.ComplaintDetail.Capturer)
+            </div>
+        </div><!--First Name-->
     </div>
-        <div class="mb-0 justify-content-end">
-            <div class="">
+
+                    <div class="row">
+                        <div class="form-group mb-4 row">
+                        <div class="control-label col-md-4"> </div>
+                        <div class="col-md-8">
+
                 <label class="custom-control custom-checkbox">
                     <input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
                     <span class="custom-control-label">I herewith confirm that the information provided within this form is true and correct.</span>
                 </label>
+                            <p>
+                                By completing this application form, I/we hereby grant my voluntary consent that my/our personal information may be processed, collected, used, and
+                                disclosed in compliance with the Protection of Personal Information Act, 4 of 2013 and Promotion of Access to Information Act, (No. 2 of 2000) (“PAIA).
+                                I/we furthermore agree that by completing this application form, my/our personal information may be used for the lawful and reasonable purposes in as
+                                far as the BCCEI (responsible party) must use my/our information in the performance of its public legal duty. I/we understand that my/our personal
+                                information may be disclosed to a third party in as far as the BCCEI must fulfil its public legal duty. I/we furthermore understand that there are instances
+                                in terms of above-mentioned Act where my express consent is not necessary to permit the processing of personal information, which may be related to
+                                litigation or when the information is publicly available. Further details are available on the BCCEI website.
+                            </p>
+        </div>
+        </div>
+                            </div>
+                        </div>
+                </div>
             </div>
         </div>
-        <p>
-            By completing this application form, I/we hereby grant my voluntary consent that my/our personal information may be processed, collected, used, and
-            disclosed in compliance with the Protection of Personal Information Act, 4 of 2013 and Promotion of Access to Information Act, (No. 2 of 2000) (“PAIA).
-            I/we furthermore agree that by completing this application form, my/our personal information may be used for the lawful and reasonable purposes in as
-            far as the BCCEI (responsible party) must use my/our information in the performance of its public legal duty. I/we understand that my/our personal
-            information may be disclosed to a third party in as far as the BCCEI must fulfil its public legal duty. I/we furthermore understand that there are instances
-            in terms of above-mentioned Act where my express consent is not necessary to permit the processing of personal information, which may be related to
-            litigation or when the information is publicly available. Further details are available on the BCCEI website.
-        </p>
     </div>
