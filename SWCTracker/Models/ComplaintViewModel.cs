@@ -6,16 +6,17 @@ namespace SWCTracker.Models
 {
     public class ComplaintViewModel
     {
-        [Display(Name = "Origin")]
-        [Required, Range(1, Int32.MaxValue, ErrorMessage = "title is required")]
-        public int OriginId { get; set; }
+        public int Id { get; set; }
+        public bool IsEmployeeRepresentative { get; set; }
+        public bool IsBargainingCouncilParty { get; set; }
 
-        public PersonViewModel? Employee { get; set; }
+        public ComplainantViewModel? Employee { get; set; }
 
-        public PersonViewModel? NextOfKin { get; set; }
+        public ComplainantViewModel? NextOfKin { get; set; }
         public OrganisationViewModel? Organisation { get; set; }
         public EmploymentDetailViewModel? EmploymentDetail { get; set; }
         public ComplaintDetailViewModel? ComplaintDetail { get; set; }
         public IEnumerable<SelectListItem>? Origins { get; set; }
+        public IEnumerable<SelectListItem>? Cities { get; set; }
     }
 }

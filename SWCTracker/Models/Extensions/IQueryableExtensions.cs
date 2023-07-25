@@ -103,7 +103,7 @@ namespace SWCTracker.Models
             Func<TSource, string> text,
             Func<TSource, int> value,
             Func<TSource, string> value2 = null,
-            Func<TSource, int> value3 = null,
+            Func<TSource, string> value3 = null,
             bool excludeDefaultItem = false,
             IEnumerable<int> selected = null,
             bool includeDefaultItem = false,

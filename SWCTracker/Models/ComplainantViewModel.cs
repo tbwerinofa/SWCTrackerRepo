@@ -4,7 +4,7 @@ using System.Xml.Linq;
 
 namespace SWCTracker.Models
 {
-    public class PersonViewModel
+    public class ComplainantViewModel
     {
         public int AddressId { get; set; }
 

@@ -24,8 +24,6 @@ namespace SWCTracker.Models
         [StringLength(10, MinimumLength = 10, ErrorMessage = "format is not valid.")]
         public string? WorkTelephone { get; set; }
 
-
-
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Cell")]
         [Required(ErrorMessage = "contact number required")]

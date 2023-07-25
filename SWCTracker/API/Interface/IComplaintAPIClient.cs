@@ -4,7 +4,7 @@ namespace SWCTracker.API
 {
     public interface IComplaintAPIClient
     {
-        ComplaintViewModel GetModel();
+        Task<ComplaintViewModel> GetModelAsync();
 
         SaveResult SaveModel(ComplaintViewModel model);
     }

@@ -50,7 +50,7 @@
                 <div class="form-group row">
                     @Html.LabelFor(m => m.Employee.Address.CityId, htmlAttributes: ModelConstant.LabelRequired)
                     <div class="col-md-8">
-                        @Html.DropDownListFor(m => m.Employee.Address.CityId, Model.Employee.Address.Cities, htmlAttributes:  ModelConstant.FormControlInp)
+                        @Html.DropDownListFor(m => m.Employee.Address.CityId, Model.Cities, htmlAttributes:  ModelConstant.FormControlInp)
                         @Html.ValidationMessageFor(m => m.Employee.Address.CityId)
                     </div>
                 </div>

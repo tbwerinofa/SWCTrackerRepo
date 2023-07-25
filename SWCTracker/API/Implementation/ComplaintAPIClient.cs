@@ -15,25 +15,13 @@ namespace SWCTracker.API
         }
 
         #region Read
-        public ComplaintViewModel GetModel()
+        public async Task<ComplaintViewModel> GetModelAsync()
         {
-            var requestUri = "subsector";
-            AddressViewModel addressModel = GetAddressModel();
-            ComplaintViewModel model = new ComplaintViewModel();
-            model.ComplaintDetail = new ComplaintDetailViewModel{
-                ComplaintTypes = BuildComplaintTypes(),
-                Sectors = BuildSectors()
-            };
+            var requestUri = "complaint";
+            var resultSet =  await _client.GetFromJsonAsync<ComplaintViewModel>(requestUri);
+         
 
-            model.EmploymentDetail = new EmploymentDetailViewModel{ Occupations = IQueryableExtensions.Default_DropDownItem(), Address = addressModel };
-
-            model.Employee = new PersonViewModel{Address = addressModel};
-            model.NextOfKin = new PersonViewModel{Address = addressModel};
-
-            //var products = GetProducts();
-            //return await _client.GetFromJsonAsync<List<DashboardItem>>(requestUri);
-
-            return model;
+            return resultSet;
         }
 
         public AddressViewModel GetAddressModel()

@@ -12,9 +12,9 @@ namespace SWCTracker.Controllers
         {
             _modelBL = modelBL;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            ComplaintViewModel model =  _modelBL.GetModel();
+            ComplaintViewModel model =  await _modelBL.GetModelAsync();
             return View(model);
         }
 
