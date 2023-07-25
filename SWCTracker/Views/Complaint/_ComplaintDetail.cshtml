@@ -36,7 +36,7 @@
                                 {
                                 <label class="custom-control custom-checkbox">
 
-                                        <input type="checkbox" class="custom-control-input" name="@selectListItem.Value" value="@selectListItem.Value">
+                                            <input type="checkbox" class="custom-control-input" name="ComplaintDetail_ComplaintTypeIds" value="@selectListItem.Value">
                                         <span class="custom-control-label">@selectListItem.Text</span>
                                 </label>
                                     }
@@ -76,13 +76,13 @@
 
                     <input id="inputProcessCompliant" type="hidden" value="@Model.ComplaintDetail.ProcessCompliant.ToBoolString()" />
                     <div class="form-group row">
-                        @Html.LabelFor(model => model.ComplaintDetail.ProcessCompliant, new { @class = "control-label col-md-8 input-sm" })
+                        @Html.LabelFor(model => model.ComplaintDetail.ProcessCompliant, new { @class = "control-label col-md-8 input-sm field-required" })
                         <div class="col-md-4">
                             <label class="radio-inline">
-                                <input type="radio" name="ComplaintDetail.ProcessCompliant" value="true"> Yes
+                                <input type="radio" name="ComplaintDetail_ProcessCompliant" value="true"> Yes
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="ComplaintDetail.ProcessCompliant" value="false"> No
+                                <input type="radio" name="ComplaintDetail_ProcessCompliant" value="false"> No
                             </label>
                         </div>
                     </div><!--form group-->

@@ -24,13 +24,6 @@
                             @Html.ValidationMessageFor(model => model.Employee.Surname)
                         </div>
                     </div> <!--Surname-->
-                    <div class="form-group mb-4 row">
-                        @Html.LabelFor(model => model.Employee.OtherName, htmlAttributes: ModelConstant.LabelStandard)
-                        <div class="col-md-8">
-                            @Html.EditorFor(model => model.Employee.OtherName, new { htmlAttributes = ModelConstant.FormControlInp })
-                            @Html.ValidationMessageFor(model => model.Employee.OtherName)
-                        </div>
-                    </div><!--Other Name-->
                     <div id="div-idnumber" class="form-group mb-4 row">
                         @Html.LabelFor(model => model.Employee.IDNumber, htmlAttributes: ModelConstant.LabelRequired)
                         <div class="col-md-8">
@@ -57,10 +50,10 @@
                         </div>
                     </div>
                     <div class="form-group mb-4 row">
-                        @Html.LabelFor(model => model.Employee.WorkTelephone, htmlAttributes: ModelConstant.LabelStandard)
+                        @Html.LabelFor(model => model.Employee.Telephone, htmlAttributes: ModelConstant.LabelStandard)
                         <div class="col-md-8">
-                            @Html.EditorFor(model => model.Employee.WorkTelephone, new { htmlAttributes = ModelConstant.FormControlInpContactNo })
-                            @Html.ValidationMessageFor(model => model.Employee.WorkTelephone)
+                            @Html.EditorFor(model => model.Employee.Telephone, new { htmlAttributes = ModelConstant.FormControlInpContactNo })
+                            @Html.ValidationMessageFor(model => model.Employee.Telephone)
                         </div>
                     </div>
                 </div>
@@ -84,7 +77,7 @@
                         </div>
                     </div>
                     <div class="form-group mb-4 row">
-                        @Html.LabelFor(m => m.Employee.Address.Line2, htmlAttributes: ModelConstant.LabelRequired)
+                        @Html.LabelFor(m => m.Employee.Address.Line2, htmlAttributes: ModelConstant.LabelStandard)
                         <div class="col-md-8">
                             @Html.EditorFor(m => m.Employee.Address.Line2, new { htmlAttributes = ModelConstant.FormControlInp })
                             @Html.ValidationMessageFor(m => m.Employee.Address.Line2)
@@ -113,7 +106,7 @@
                         @Html.LabelFor(m => m.Employee.Address.CityId, htmlAttributes: ModelConstant.LabelRequired)
                         <div class="col-md-8">
                             @Html.DropDownListFor(m => m.Employee.Address.CityId, Model.Cities, htmlAttributes: ModelConstant.FormControlInp)
-                            @Html.ValidationMessageFor(m => m.NextOfKin.Address.CityId)
+                            @Html.ValidationMessageFor(m => m.Employee.Address.CityId)
                         </div>
                     </div>
                 </div>
@@ -146,17 +139,17 @@
                         </div>
                     </div> <!--Surname-->
                     <div class="form-group mb-4 row">
-                        @Html.LabelFor(model => model.NextOfKin.NextOfKinEmail, htmlAttributes: ModelConstant.LabelRequired)
+                        @Html.LabelFor(model => model.NextOfKin.Email, htmlAttributes: ModelConstant.LabelRequired)
                         <div class="col-md-8">
-                            @Html.EditorFor(model => model.NextOfKin.NextOfKinEmail, new { htmlAttributes = ModelConstant.FormControlInp })
-                            @Html.ValidationMessageFor(model => model.NextOfKin.NextOfKinEmail)
+                            @Html.EditorFor(model => model.NextOfKin.Email, new { htmlAttributes = ModelConstant.FormControlInp })
+                            @Html.ValidationMessageFor(model => model.NextOfKin.Email)
                         </div>
                     </div> <!--Surname-->
                     <div class="form-group mb-4 row">
-                        @Html.LabelFor(model => model.NextOfKin.NextOfKinContactNo, htmlAttributes: ModelConstant.LabelRequired)
+                        @Html.LabelFor(model => model.NextOfKin.Telephone, htmlAttributes: ModelConstant.LabelRequired)
                         <div class="col-md-8">
-                            @Html.EditorFor(model => model.NextOfKin.NextOfKinContactNo, new { htmlAttributes = ModelConstant.FormControlInpContactNo })
-                            @Html.ValidationMessageFor(model => model.NextOfKin.NextOfKinContactNo)
+                            @Html.EditorFor(model => model.NextOfKin.Telephone, new { htmlAttributes = ModelConstant.FormControlInpContactNo })
+                            @Html.ValidationMessageFor(model => model.NextOfKin.Telephone)
                         </div>
                     </div> <!--Surname-->
                 </div>
@@ -170,7 +163,7 @@
                         </div>
                     </div>
                     <div class="form-group mb-4 row">
-                        @Html.LabelFor(m => m.NextOfKin.Address.Line2, htmlAttributes: ModelConstant.LabelRequired)
+                        @Html.LabelFor(m => m.NextOfKin.Address.Line2, htmlAttributes: ModelConstant.LabelStandard)
                         <div class="col-md-8">
                             @Html.EditorFor(m => m.NextOfKin.Address.Line2, new { htmlAttributes = ModelConstant.FormControlInp })
                             @Html.ValidationMessageFor(m => m.Employee.Address.Line2)

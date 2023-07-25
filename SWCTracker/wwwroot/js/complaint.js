@@ -1,10 +1,19 @@
 ﻿var $processDescription = $('#ProcessDescription');
 $divProcessCompliant = $('#div-process-compliant');
-$isProcessCompliant = $('#form-main input[name="ProcessCompliant"]');
+$isProcessCompliant = $('#form-main input[name="ComplaintDetail_ProcessCompliant"]');
 $inputProcessCompliant = $('#inputProcessCompliant');
 var $complaintWizard = $('#complaintWizard');
 $formMain = $('#form-main');
 $(document).ready(function () {
+   
+    // Input Masks
+    $('#dateMask').mask('99/99/9999');
+    $('#phoneMask').mask('(999) 999-9999');
+    $('#ssnMask').mask('999-99-9999');
+    $('.fc-datepicker').datepicker({
+        showOtherMonths: true,
+        selectOtherMonths: true
+    });
 
     // Toolbar extra buttons
     var btnFinish = $('<button></button>').text('Finish')
@@ -34,7 +43,7 @@ $(document).ready(function () {
     /*radio button event*/
     $isProcessCompliant.click(function () {
 
-        $divProcessCompliant.find('input').val('');
+       // $divProcessCompliant.find('input').val('');
 
         if ($(this).val() !== 'true') {
 
@@ -110,11 +119,11 @@ function SetDefaults() {
 
 
     if ($inputProcessCompliant.val() == 'Yes') {
-        $('[name=ProcessCompliant][value=true]').prop("checked", true);
+        $('[name=ComplaintDetail_ProcessCompliant][value=true]').prop("checked", true);
         $divProcessCompliant.fadeOut();
     }
     else {
-        $('[name=ProcessCompliant][value=false]').prop("checked", true);
+        $('[name=ComplaintDetail_ProcessCompliant][value=false]').prop("checked", true);
         $divProcessCompliant.fadeIn();
     }
 

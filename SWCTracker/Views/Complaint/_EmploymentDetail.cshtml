@@ -36,19 +36,20 @@
                         </div>
                     </div>
                     <div class="form-group mb-4 row">
-                        @Html.LabelFor(model => model.EmploymentDetail.CellPhone, htmlAttributes: ModelConstant.LabelRequired)
-                        <div class="col-md-8">
-                            @Html.EditorFor(model => model.EmploymentDetail.CellPhone, new { htmlAttributes = ModelConstant.FormControlInpContactNo })
-                            @Html.ValidationMessageFor(model => model.EmploymentDetail.CellPhone)
-                        </div>
-                    </div>
-                    <div class="form-group mb-4 row">
-                        @Html.LabelFor(model => model.EmploymentDetail.WorkTelephone, htmlAttributes: ModelConstant.LabelStandard)
+                        @Html.LabelFor(model => model.EmploymentDetail.WorkTelephone, htmlAttributes: ModelConstant.LabelRequired)
                         <div class="col-md-8">
                             @Html.EditorFor(model => model.EmploymentDetail.WorkTelephone, new { htmlAttributes = ModelConstant.FormControlInpContactNo })
                             @Html.ValidationMessageFor(model => model.EmploymentDetail.WorkTelephone)
                         </div>
                     </div>
+                    <div class="form-group mb-4 row">
+                        @Html.LabelFor(model => model.EmploymentDetail.CellPhone, htmlAttributes: ModelConstant.LabelStandard)
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.EmploymentDetail.CellPhone, new { htmlAttributes = ModelConstant.FormControlInpContactNo })
+                            @Html.ValidationMessageFor(model => model.EmploymentDetail.CellPhone)
+                        </div>
+                    </div>
+                  
                 </div>
             </div>
         </div>
@@ -119,15 +120,34 @@
                     <div class="form-group mb-4 row">
                         @Html.LabelFor(model => model.EmploymentDetail.StartDate, htmlAttributes: ModelConstant.LabelRequired)
                         <div class="col-md-8">
-                            @Html.EditorFor(model => model.EmploymentDetail.StartDate, new { htmlAttributes = ModelConstant.FormControlInp })
+
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <div class="">
+                                        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18"><path d="M0 0h24v24H0V0z" fill="none"></path>
+                                            <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 2v3H4V5h16zM4 21V10h16v11H4z"></path>
+                                            <path d="M4 5.01h16V8H4z" opacity=".3"></path></svg>
+                                    </div>
+                                </div><input class="form-control fc-datepicker hasDatepicker" placeholder="MM/DD/YYYY" type="date" id="@Model.EmploymentDetail.StartDate">
+                            </div>
                             @Html.ValidationMessageFor(model => model.EmploymentDetail.StartDate)
                         </div>
                     </div><!--First Name-->
 
                     <div class="form-group mb-4 row">
-                        @Html.LabelFor(model => model.EmploymentDetail.LeftDate, htmlAttributes: ModelConstant.LabelRequired)
+                        @Html.LabelFor(model => model.EmploymentDetail.LeftDate, htmlAttributes: ModelConstant.LabelStandard)
                         <div class="col-md-8">
-                            @Html.EditorFor(model => model.EmploymentDetail.LeftDate, new { htmlAttributes = ModelConstant.FormControlInp })
+                            <div class="input-group">
+                                <div class="input-group-text">
+                                    <div class="">
+                                        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="18" viewBox="0 0 24 24" width="18">
+                                            <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                            <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 2v3H4V5h16zM4 21V10h16v11H4z"></path>
+                                            <path d="M4 5.01h16V8H4z" opacity=".3"></path>
+                                        </svg>
+                                    </div>
+                                </div><input class="form-control fc-datepicker hasDatepicker" placeholder="MM/DD/YYYY" type="date" id="@Model.EmploymentDetail.LeftDate">
+                            </div>
                             @Html.ValidationMessageFor(model => model.EmploymentDetail.LeftDate)
                         </div>
                     </div> <!--Surname-->
@@ -162,7 +182,7 @@
                             @{
                                 var organisationList = Model.EmploymentDetail.Occupations.Select(a => a.Value2).Distinct();
                             }
-                            <select class="form-control input-sm" data-val="true" id="OccupationIds" multiple="multiple" name="OccupationIds">
+                            <select class="form-control input-sm" data-val="true" id="OccupationIds" name="OccupationIds">
 
                                 @foreach (var groupRecord in organisationList)
                                 {

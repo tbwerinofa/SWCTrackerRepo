@@ -35,7 +35,6 @@ namespace SWCTracker.Models
         [EmailAddress(ErrorMessage = "format is not valid")]
         public string? Email { get; set; }
 
-        public AddressViewModel? Address { get; set; }
         [DisplayName("Started")]
         [DataType(DataType.Date)]
         [Required(ErrorMessage = "required")]
@@ -46,7 +45,7 @@ namespace SWCTracker.Models
         public DateTime LeftDate { get; set; }
         public string? StartDateLongDate { get; set; }
 
-        [Display(Name = "Salary/Wage")]
+        [Display(Name = "Salary/Wage (per hour)")]
         [Required, Range(1, Int32.MaxValue, ErrorMessage = "required")]
         public decimal Salary { get; set; }
 
@@ -66,9 +65,11 @@ namespace SWCTracker.Models
         [Display(Name = "Occupation")]
         [Required(ErrorMessage = "required")]
         public IEnumerable<int>? OccupationIds { get; set; }
-        public AddressViewModel? NextOfKinAddress { get; set; }
+        //public AddressViewModel? NextOfKinAddress { get; set; }
 
         public IEnumerable<DropDownListItem>? Occupations { get; set; }
+
+        public AddressViewModel? Address { get; set; }
 
 
     }

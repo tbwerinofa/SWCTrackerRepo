@@ -7,12 +7,12 @@ namespace SWCTracker.Models
     public class AddressViewModel
     {
         public int Id { get; set; }
-        [Display(Name = "Line 1")]
+        [Display(Name = "Address Line 1")]
         [Required(ErrorMessage = "address line 1 isrequired")]
         [StringLength(250, ErrorMessage = "must be less than 250 characters.")]
         public string? Line1 { get; set; }
 
-        [Display(Name = "Line 2")]
+        [Display(Name = "Address Line 2")]
         [StringLength(250, ErrorMessage = "must be less than 250 characters.")]
         public string? Line2 { get; set; }
 
