@@ -188,7 +188,7 @@
                     <div class="form-group mb-4 row">
                         @Html.LabelFor(m => m.NextOfKin.Address.CityId, htmlAttributes: ModelConstant.LabelRequired)
                         <div class="col-md-8">
-                            @Html.DropDownListFor(m => m.Employee.Address.CityId, Model.Cities, htmlAttributes: ModelConstant.FormControlInp)
+                            @Html.DropDownListFor(m => m.NextOfKin.Address.CityId, Model.Cities, htmlAttributes: ModelConstant.FormControlInp)
                             @Html.ValidationMessageFor(m => m.NextOfKin.Address.CityId)
                         </div>
                     </div>

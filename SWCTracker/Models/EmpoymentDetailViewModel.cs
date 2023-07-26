@@ -26,7 +26,6 @@ namespace SWCTracker.Models
 
         [DataType(DataType.PhoneNumber)]
         [Display(Name = "Cell")]
-        [Required(ErrorMessage = "contact number required")]
         [StringLength(10, MinimumLength = 10, ErrorMessage = "format is not valid.")]
         public string? CellPhone { get; set; }
 
@@ -63,8 +62,8 @@ namespace SWCTracker.Models
         public string? Duties { get; set; }
 
         [Display(Name = "Occupation")]
-        [Required(ErrorMessage = "required")]
-        public IEnumerable<int>? OccupationIds { get; set; }
+        [Required, Range(1, Int32.MaxValue, ErrorMessage = "required")]
+        public int OccupationId { get; set; }
         //public AddressViewModel? NextOfKinAddress { get; set; }
 
         public IEnumerable<DropDownListItem>? Occupations { get; set; }

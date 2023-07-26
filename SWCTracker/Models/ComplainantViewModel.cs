@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SWCTracker.Models
 {
@@ -41,33 +39,8 @@ namespace SWCTracker.Models
         [Required(ErrorMessage = "email is required")]
         [EmailAddress(ErrorMessage = "format is not valid")]
         public string? Email { get; set; }
-        [Display(Name = "Next of Kin")]
-        [Required(ErrorMessage = "required")]
-        [StringLength(100, ErrorMessage = "must be less than 100 characters.")]
-        public string? NextOfKinFirstName { get; set; }
-
-        [Display(Name = "Next of Kin Surname")]
-        [Required(ErrorMessage = "required")]
-        [StringLength(100, ErrorMessage = "must be less than 100 characters.")]
-        public string? NextOfKinSurname { get; set; }
-
-        [DataType(DataType.PhoneNumber)]
-        [Display(Name = "Contact Number")]
-        [Required(ErrorMessage = "emergency contact number required")]
-        [StringLength(10, MinimumLength = 10, ErrorMessage = "format is not valid.")]
-        public string? NextOfKinContactNo { get; set; }
-        [DataType(DataType.PhoneNumber)]
-        [Display(Name = "Contact Number")]
-        [Required(ErrorMessage = "emergency contact number required")]
-        [StringLength(10, MinimumLength = 10, ErrorMessage = "format is not valid.")]
-        public string? NextOfKinContactFax { get; set; }
-
-        [Display(Name = "Email")]
-        [Required(ErrorMessage = "email is required")]
-        [EmailAddress(ErrorMessage = "format is not valid")]
-        public string? NextOfKinEmail { get; set; }
-        public AddressViewModel? NextOfKinAddress { get; set; }
+       
         public AddressViewModel? Address { get; set; }
-        public string FullName { get; set; }
+
     }
 }

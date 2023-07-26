@@ -18,12 +18,12 @@
                                     {
                                         <label class="custom-control custom-checkbox">
 
-                                            <input type="checkbox" class="custom-control-input" name="SectorIds" value="@selectListItem.Value">
+                                            <input type="checkbox" class="custom-control-input" name="ComplaintDetail.SectorIds" value="@selectListItem.Value">
                                             <span class="custom-control-label">@selectListItem.Text</span>
                                         </label>
                                     }
                                 </div>
-                                @Html.ValidationMessageFor(model => model.ComplaintDetail.ComplaintTypeIds)
+                                @Html.ValidationMessageFor(model => model.ComplaintDetail.SectorIds)
                             </div>
                         </div><!--First Name-->
                     </div>
@@ -36,7 +36,7 @@
                                 {
                                 <label class="custom-control custom-checkbox">
 
-                                            <input type="checkbox" class="custom-control-input" name="ComplaintDetail_ComplaintTypeIds" value="@selectListItem.Value">
+                                            <input type="checkbox" class="custom-control-input" name="ComplaintDetail.ComplaintTypeIds" value="@selectListItem.Value">
                                         <span class="custom-control-label">@selectListItem.Text</span>
                                 </label>
                                     }
@@ -139,7 +139,11 @@
                         <div class="col-md-8">
 
                 <label class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" name="example-checkbox2" value="option2">
+                                    <input type="checkbox" class="custom-control-input" data-val-range="you must agree to terms and conditions to proceed!"
+                                           data-val-required="The Agree field is required."
+                                           id="Agree"
+                                           name="Agree" value="true">
+                                    
                     <span class="custom-control-label">I herewith confirm that the information provided within this form is true and correct.</span>
                 </label>
                             <p>

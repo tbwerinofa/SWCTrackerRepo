@@ -30,7 +30,8 @@ namespace SWCTracker.Controllers
                 ModelState.Remove("ComplaintDetail.ProcessDescription");
             }
 
-
+            ModelState.Remove("NextOfKin.IDNumber");
+            ModelState.Remove("NextOfKin.CellPhone");
             if (ModelState.IsValid)
             {
 

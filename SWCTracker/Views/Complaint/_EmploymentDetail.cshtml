@@ -71,7 +71,7 @@
                         </div>
                     </div>
                     <div class="form-group mb-4 row">
-                        @Html.LabelFor(m => m.EmploymentDetail.Address.Line2, htmlAttributes: ModelConstant.LabelRequired)
+                        @Html.LabelFor(m => m.EmploymentDetail.Address.Line2, htmlAttributes: ModelConstant.LabelStandard)
                         <div class="col-md-8">
                             @Html.EditorFor(m => m.EmploymentDetail.Address.Line2, new { htmlAttributes = ModelConstant.FormControlInp })
                             @Html.ValidationMessageFor(m => m.EmploymentDetail.Address.Line2)
@@ -128,7 +128,7 @@
                                             <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 2v3H4V5h16zM4 21V10h16v11H4z"></path>
                                             <path d="M4 5.01h16V8H4z" opacity=".3"></path></svg>
                                     </div>
-                                </div><input class="form-control fc-datepicker hasDatepicker" placeholder="MM/DD/YYYY" type="date" id="@Model.EmploymentDetail.StartDate">
+                                </div><input class="form-control fc-datepicker hasDatepicker" placeholder="MM/DD/YYYY" required type="date" id="@Model.EmploymentDetail.StartDate">
                             </div>
                             @Html.ValidationMessageFor(model => model.EmploymentDetail.StartDate)
                         </div>
@@ -154,31 +154,34 @@
                     
 
                     <div class="form-group mb-4 row">
-                        <label class="control-label col-md-4 input-sm" for="EmploymentDetail_Salary">Salary/Wage (per hour)</label>
+                        <label class="control-label col-md-4 input-sm field-required" for="EmploymentDetail_Salary">Salary/Wage (per hour)</label>
                         <div class="col-md-8">
-                            <input class="form-control input-sm text-box single-line" data-val="true"
+                            <input class="form-control input-sm text-box single-line decimal-number-only" data-val="true"
                             data-val-number="The field Salary/Wage (per hour) must be a number."
-                            data-val-range="required" data-val-range-max="2147483647" data-val-range-min="1" 
-                            data-val-required="The Salary/Wage (per hour) field is required." id="EmploymentDetail_Salary" name="EmploymentDetail.Salary" type="text">
-                            <span class="field-validation-valid" data-valmsg-for="EmploymentDetail.Salary" data-valmsg-replace="true"></span>
+                            data-val-range="required" data-val-range-max="10000" data-val-range-min="1" 
+                            data-val-required="The Salary/Wage (per hour) field is required."
+                             max="10000"
+                             maxlength="5"
+                             id="EmploymentDetail_Salary" name="EmploymentDetail.Salary" type="text">
+                            <span class="field-validation-valid" data-valmsg-for="EmploymentDetail_Salary" data-valmsg-replace="true"></span>
                         </div>
                     </div><!--Other Name-->
                     <div id="div-idnumber" class="form-group mb-4 row">
                         <label class="control-label col-md-4 input-sm field-required" for="EmploymentDetail_WorkingHours">Working Hours</label>
                         <div class="col-md-8">
                             <input class="form-control number-only input-sm text-box single-line" data-val="true" 
-                            data-val-range="required" data-val-range-max="2147483647" data-val-range-min="1" data-val-required="The Working Hours field is required." 
-                            id="EmploymentDetail_WorkingHours" maxlength="13" name="EmploymentDetail.WorkingHours" type="number">
-                            <span class="field-validation-valid" data-valmsg-for="EmploymentDetail.WorkingHours" data-valmsg-replace="true"></span>
+                            data-val-range="required" data-val-range-max="24" data-val-range-min="1" data-val-required="The Working Hours field is required." 
+                            id="EmploymentDetail_WorkingHours" max="24" maxlength="2" name="EmploymentDetail.WorkingHours" type="number">
+                            <span class="field-validation-valid" data-valmsg-for="EmploymentDetail_WorkingHours" data-valmsg-replace="true"></span>
                         </div>
                     </div>
                     <div id="div-idnumber" class="form-group mb-4 row">
                         <label class="control-label col-md-4 input-sm field-required" for="EmploymentDetail_DaysPerWeek">Days per week</label>
                         <div class="col-md-8">
                             <input class="form-control number-only input-sm text-box single-line" data-val="true" data-val-range="required"
-                            data-val-range-max="7" data-val-range-min="1" data-val-required="The Days per week field is required." 
-                            id="EmploymentDetail_DaysPerWeek" maxlength="13" name="EmploymentDetail.DaysPerWeek" type="number">
-                            <span class="field-validation-valid" data-valmsg-for="EmploymentDetail.DaysPerWeek" data-valmsg-replace="true"></span>
+                            data-val-range-max="7" max="7" data-val-range-min="1" data-val-required="The Days per week field is required." 
+                            id="EmploymentDetail_DaysPerWeek" maxlength="1" name="EmploymentDetail.DaysPerWeek" type="number">
+                            <span class="field-validation-valid" data-valmsg-for="EmploymentDetail_DaysPerWeek" data-valmsg-replace="true"></span>
                         </div>
                     </div>
 
@@ -187,46 +190,34 @@
 
 
                     <div class="form-group mb-4 row">
-                        @Html.LabelFor(model => model.EmploymentDetail.OccupationIds, htmlAttributes: ModelConstant.LabelRequired)
+                        @Html.LabelFor(model => model.EmploymentDetail.OccupationId, htmlAttributes: ModelConstant.LabelRequired)
                         <div class="col-md-8">
                             @{
                                 var organisationList = Model.EmploymentDetail.Occupations.Select(a => a.Value2).Distinct();
                             }
-                            <select class="form-control input-sm" data-val="true" id="OccupationIds" name="OccupationIds">
-
+                                <select class="form-control input-sm" data-val="true" data-val-range="City is required" data-val-range-max="2147483647" data-val-range-min="1" 
+                                data-val-required="The City field is required."
+                                    id="EmploymentDetail_OccupationId"
+                                    name="EmploymentDetail.OccupationId">
+                                    <option value="0">-- choose --</option>
+                                <optgroup label="select">
+                                <option value="0">-- choose --</option>
+                                </optgroup>
                                 @foreach (var groupRecord in organisationList)
                                 {
                                     <optgroup label="@groupRecord">
                                         @foreach (var option in Model.EmploymentDetail.Occupations.Where(a => a.Value2 == groupRecord))
                                         {
-                                            string selected = string.Empty;
-
-                                            if (Model.EmploymentDetail.OccupationIds != null && Model.EmploymentDetail.OccupationIds.Any())
-                                            {
-                                                if (Model.EmploymentDetail.OccupationIds.Contains(option.Value))
-                                                {
-                                                    option.Selected = true;
-                                                }
-                                            }
-
-                                            if (option.Selected)
-                                            {
-                                                <option selected value="@option.Value">@option.Text</option>
-                                            }
-                                            else
-                                            {
                                                 <option value="@option.Value">@option.Text</option>
-
-                                            }
                                         }
                                     </optgroup>
                                 }
                             </select>
-                            @Html.ValidationMessageFor(model => model.EmploymentDetail.OccupationIds)
+                            @Html.ValidationMessageFor(model => model.EmploymentDetail.OccupationId)
                         </div>
                     </div>
                     <div class="form-group mb-4 row">
-                        @Html.LabelFor(model => model.EmploymentDetail.Duties, htmlAttributes: ModelConstant.LabelRequired)
+                        @Html.LabelFor(model => model.EmploymentDetail.Duties, htmlAttributes: ModelConstant.LabelStandard)
                         <div class="col-md-8">
                             @Html.TextAreaFor(model => model.EmploymentDetail.Duties, new { @class = "form-control input-sm", @rows = 6 })
                             @Html.ValidationMessageFor(model => model.EmploymentDetail.Duties)
