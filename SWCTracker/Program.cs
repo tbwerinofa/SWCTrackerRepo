@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient<ISubSectorAPIClient, SubSectorAPIClient>();
 builder.Services.AddHttpClient<IComplaintAPIClient, ComplaintAPIClient>();
+builder.Services.AddHttpClient<ITaskGradeAPIClient, TaskGradeAPIClient>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

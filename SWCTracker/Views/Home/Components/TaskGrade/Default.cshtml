@@ -1,0 +1,162 @@
+﻿@model IList<WageRateDetailResultSet>
+@{
+    ViewData["Title"] = "SWC Tracker";
+
+    var occupationGroups = Model.Select(a => new
+    {
+        a.OccupationGroup,
+        a.OccupationGroupId
+    }).ToList().Distinct();
+}
+
+                    <!-- Row-->
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Employee Details</h3>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-vcenter text-nowrap mb-0 border">
+                        <thead>
+                            <tr>
+                                <th class="border-bottom-0">Occupation Group</th>
+                                <th class="text-center">Occupation</th>
+                                <th class="text-center">Projects</th>
+                                <th class="text-center">Performance</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in occupationGroups.OrderBy(a => a.OccupationGroup))
+                            {
+                                <tr>
+                                    <td class="d-flex">
+                                        <img class="avatar-lg rounded-circle me-3" src="../../assets/images/users/1.jpg" alt="Image description">
+                                        <div class="ms-3 mt-2">
+                                            <h5 class="mb-0 text-dark">@item.OccupationGroup</h5>
+                                            <p class="mb-0  fs-13 text-muted">lillianblake@gmail.com</p>
+                                        </div>
+                                    </td>
+                                    <td class="text-center">Angular Developer</td>
+                                    <td class="text-center">876</td>
+                                    <td>
+                                        <div class="mx-auto chart-circle chart-circle-xs chart-circle-secondary mt-sm-0 mb-0 icon-dropshadow-secondary" data-value="0.45" data-thickness="5" data-color="#f72d66">
+                                            <div class="mx-auto chart-circle-value text-center">45%</div>
+                                        </div>
+                                    </td>
+                                    <td class="text-end"><a class="btn btn-light" href="javascript:void(0)"> View Details</a></td>
+                                </tr>
+                            }
+
+                            <tr>
+                                <td class="d-flex">
+                                    <img class="avatar-lg rounded-circle me-3" src="../../assets/images/users/2.jpg" alt="Image description">
+                                    <div class="ms-3 mt-2">
+                                        <h5 class="mb-0 text-dark">Georgine Earle</h5>
+                                        <p class="mb-0  fs-13 text-muted">georgineearle@gmail.com</p>
+                                    </div>
+                                </td>
+                                <td class="text-center">Php Developer</td>
+                                <td class="text-center">342</td>
+                                <td>
+                                    <div class="mx-auto chart-circle chart-circle-xs chart-circle-primary mt-sm-0 mb-0 icon-dropshadow-primary" data-value="0.55" data-thickness="5" data-color="#4454c3">
+                                        <div class="mx-auto chart-circle-value text-center">55%</div>
+                                    </div>
+                                </td>
+                                <td class="text-end"><a class="btn btn-light" href="javascript:void(0)"> View Details</a></td>
+                            </tr>
+                            <tr>
+                                <td class="d-flex">
+                                    <img class="avatar-lg rounded-circle me-3" src="../../assets/images/users/3.jpg" alt="Image description">
+                                    <div class="ms-3 mt-2">
+                                        <h5 class="mb-0 text-dark">Veta Willson</h5>
+                                        <p class="mb-0  fs-13 text-muted">vetawillson@gmail.com</p>
+                                    </div>
+                                </td>
+                                <td class="text-center">Web Developer</td>
+                                <td class="text-center">564</td>
+                                <td>
+                                    <div class="mx-auto chart-circle chart-circle-xs chart-circle-success mt-sm-0 mb-0 icon-dropshadow-success" data-value="0.85" data-thickness="5" data-color="#2dce89">
+                                        <div class="mx-auto chart-circle-value text-center">85%</div>
+                                    </div>
+                                </td>
+                                <td class="text-end"><a class="btn btn-light" href="javascript:void(0)"> View Details</a></td>
+                            </tr>
+                            <tr>
+                                <td class="d-flex">
+                                    <img class="avatar-lg rounded-circle me-3" src="../../assets/images/users/4.jpg" alt="Image description">
+                                    <div class="ms-3 mt-2">
+                                        <h5 class="mb-0 text-dark">Kayleigh Throneberry</h5>
+                                        <p class="mb-0  fs-13 text-muted">kayleighthroneberry@gmail.com</p>
+                                    </div>
+                                </td>
+                                <td class="text-center">Web Designer</td>
+                                <td class="text-center">345</td>
+                                <td>
+                                    <div class="mx-auto chart-circle chart-circle-xs chart-circle-success mt-sm-0 mb-0 icon-dropshadow-success" data-value="0.90" data-thickness="5" data-color="#2dce89">
+                                        <div class="mx-auto chart-circle-value text-center">90%</div>
+                                    </div>
+                                </td>
+                                <td class="text-end"><a class="btn btn-light" href="javascript:void(0)"> View Details</a></td>
+                            </tr>
+                            <tr>
+                                <td class="d-flex">
+                                    <img class="avatar-lg rounded-circle me-3" src="../../assets/images/users/5.jpg" alt="Image description">
+                                    <div class="ms-3 mt-2">
+                                        <h5 class="mb-0 text-dark">Gretta Perro</h5>
+                                        <p class="mb-0  fs-13 text-muted">grettaperro@gmail.com</p>
+                                    </div>
+                                </td>
+                                <td class="text-center">Angular Developer</td>
+                                <td class="text-center">123</td>
+                                <td>
+                                    <div class="mx-auto chart-circle chart-circle-xs chart-circle-primary mt-sm-0 mb-0 icon-dropshadow-primary" data-value="0.65" data-thickness="5" data-color="#4454c3">
+                                        <div class="mx-auto chart-circle-value text-center">65%</div>
+                                    </div>
+                                </td>
+                                <td class="text-end"><a class="btn btn-light" href="javascript:void(0)"> View Details</a></td>
+                            </tr>
+                            <tr>
+                                <td class="d-flex">
+                                    <img class="avatar-lg rounded-circle me-3" src="../../assets/images/users/6.jpg" alt="Image description">
+                                    <div class="ms-3 mt-2">
+                                        <h5 class="mb-0 text-dark">Emelina Poisson</h5>
+                                        <p class="mb-0  fs-13 text-muted">emelinapoisson@gmail.com</p>
+                                    </div>
+                                </td>
+                                <td class="text-center">Web Developer</td>
+                                <td class="text-center">456</td>
+                                <td>
+                                    <div class="mx-auto chart-circle chart-circle-xs chart-circle-secondary mt-sm-0 mb-0 icon-dropshadow-secondary" data-value="0.40" data-thickness="5" data-color="#f72d66">
+                                        <div class="mx-auto chart-circle-value text-center">40%</div>
+                                    </div>
+                                </td>
+                                <td class="text-end"><a class="btn btn-light" href="javascript:void(0)"> View Details</a></td>
+                            </tr>
+                            <tr>
+                                <td class="d-flex">
+                                    <img class="avatar-lg rounded-circle me-3" src="../../assets/images/users/7.jpg" alt="Image description">
+                                    <div class="ms-3 mt-2">
+                                        <h5 class="mb-0 text-dark">Marleen Sohn</h5>
+                                        <p class="mb-0  fs-13 text-muted">marleensohn@gmail.com</p>
+                                    </div>
+                                </td>
+                                <td class="text-center">Web Designer</td>
+                                <td class="text-center">876</td>
+                                <td class="text-center">
+                                    <div class="mx-auto chart-circle chart-circle-xs chart-circle-primary mt-sm-0 mb-0 icon-dropshadow-primary" data-value="0.65" data-thickness="5" data-color="#4454c3">
+                                        <div class="mx-auto chart-circle-value text-center">65%</div>
+                                    </div>
+                                </td>
+                                <td class="text-end"><a class="btn btn-light" href="javascript:void(0)"> View Details</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Row -->
