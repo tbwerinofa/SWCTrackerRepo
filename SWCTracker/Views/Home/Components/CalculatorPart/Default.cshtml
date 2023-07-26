@@ -1,0 +1,66 @@
+﻿@model CalculatorViewModel
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Calculate my rates</h3>
+    </div>
+    <div class="card-body p-3">
+        <div class="row">
+        <div class="col-md-12">
+
+
+            <div class="form-group mb-4 row">
+                @Html.LabelFor(model => model.OccupationGroupId, htmlAttributes: ModelConstant.LabelRequired)
+                <div class="col-md-8">
+                    @Html.DropDownListFor(m => m.OccupationGroupId, Model.OccupationGroups, htmlAttributes: ModelConstant.FormControlInp)
+                    @Html.ValidationMessageFor(model => model.OccupationGroupId)
+                </div>
+            </div> <!--Title-->
+
+            <div class="form-group mb-4 row">
+                @Html.LabelFor(model => model.OccupationId, htmlAttributes: ModelConstant.LabelRequired)
+                <div class="col-md-8">
+                    @Html.DropDownListFor(m => m.OccupationId, Model.Occupations, htmlAttributes: ModelConstant.FormControlInp)
+                    @Html.ValidationMessageFor(model => model.OccupationId)
+                </div>
+            </div><!--First Name-->
+
+            <div class="form-group mb-4 row">
+                @Html.LabelFor(model => model.WorkingHours, htmlAttributes: ModelConstant.LabelRequired)
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.WorkingHours, new { htmlAttributes = ModelConstant.FormControlInp })
+                    @Html.ValidationMessageFor(model => model.WorkingHours)
+                </div>
+            </div> <!--Surname-->
+            <div class="form-group mb-4 row">
+                @Html.LabelFor(model => model.DaysPerWeek, htmlAttributes: ModelConstant.LabelRequired)
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.DaysPerWeek, new { htmlAttributes = ModelConstant.FormControlInp })
+                    @Html.ValidationMessageFor(model => model.DaysPerWeek)
+                </div>
+            </div><!--Other Name-->
+            <div class="form-group mb-4 row">
+                @Html.LabelFor(model => model.Salary, htmlAttributes: ModelConstant.LabelStandard)
+                <div class="col-md-8">
+                    @Html.EditorFor(model => model.Salary, new { htmlAttributes = ModelConstant.FormControlInp })
+                    @Html.ValidationMessageFor(model => model.Salary)
+                </div>
+            </div><!--First Name-->
+
+            </div>
+        </div>
+    </div>
+
+    <div class="card-footer">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group pull-right">
+                <button class="btn btn-md btn-primary">Calculate</button>
+                <button id="btn-refresh" type="button" class="btn btn-md btn-deafult">
+                    <i class="fa fa-refresh" aria-hidden="true"></i>&nbsp;Refresh
+                </button>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+</div>

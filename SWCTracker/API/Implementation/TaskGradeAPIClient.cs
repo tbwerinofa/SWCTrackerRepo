@@ -18,5 +18,22 @@ namespace SWCTracker.API
             //var products = GetProducts();
             return await _client.GetFromJsonAsync<List<WageRateDetailResultSet>>(requestUri);
         }
+
+        public async Task<CalculatorViewModel> GetCalculator(int id)
+        {
+            var resultSet = await GetTaskGrades(id);
+
+            CalculatorViewModel model = new CalculatorViewModel();
+
+            model.OccupationGroups = resultSet.Select(a => new
+            {
+                Value = a.OccupationGroupId.ToString(),
+                Text = a.OccupationGroup??string.Empty
+            }).ToList().Distinct().ToSelectListItem(a => a.Text, a => a.Value);
+
+
+            model.Occupations = IQueryableExtensions.DefaultSelectListItem();
+            return model;
+        }
     }
 }

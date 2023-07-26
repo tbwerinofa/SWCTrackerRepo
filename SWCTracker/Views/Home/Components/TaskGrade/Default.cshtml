@@ -1,6 +1,5 @@
 ﻿@model IList<WageRateDetailResultSet>
 @{
-    ViewData["Title"] = "SWC Tracker";
 
     var occupationGroups = Model.Select(a => new
     {
@@ -8,6 +7,7 @@
         a.OccupationGroupId
     }).ToList().Distinct();
 }
+
 
                     <!-- Row-->
 <div class="row">
