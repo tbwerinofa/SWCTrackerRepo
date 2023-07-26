@@ -56,7 +56,7 @@ namespace SWCTracker.Models
 
         [Display(Name = "Days per week")]
         [Required, Range(1, 7, ErrorMessage = "required")]
-        public decimal DaysPerWeek { get; set; }
+        public int DaysPerWeek { get; set; }
 
 
         [StringLength(250, ErrorMessage = "must be less than 250 characters")]

@@ -151,27 +151,37 @@
                             @Html.ValidationMessageFor(model => model.EmploymentDetail.LeftDate)
                         </div>
                     </div> <!--Surname-->
+                    
+
                     <div class="form-group mb-4 row">
-                        @Html.LabelFor(model => model.EmploymentDetail.Salary, htmlAttributes: ModelConstant.LabelStandard)
+                        <label class="control-label col-md-4 input-sm" for="EmploymentDetail_Salary">Salary/Wage (per hour)</label>
                         <div class="col-md-8">
-                            @Html.EditorFor(model => model.EmploymentDetail.Salary, new { htmlAttributes = ModelConstant.FormControlInp })
-                            @Html.ValidationMessageFor(model => model.EmploymentDetail.Salary)
+                            <input class="form-control input-sm text-box single-line" data-val="true"
+                            data-val-number="The field Salary/Wage (per hour) must be a number."
+                            data-val-range="required" data-val-range-max="2147483647" data-val-range-min="1" 
+                            data-val-required="The Salary/Wage (per hour) field is required." id="EmploymentDetail_Salary" name="EmploymentDetail.Salary" type="text">
+                            <span class="field-validation-valid" data-valmsg-for="EmploymentDetail.Salary" data-valmsg-replace="true"></span>
                         </div>
                     </div><!--Other Name-->
                     <div id="div-idnumber" class="form-group mb-4 row">
-                        @Html.LabelFor(model => model.EmploymentDetail.WorkingHours, htmlAttributes: ModelConstant.LabelRequired)
+                        <label class="control-label col-md-4 input-sm field-required" for="EmploymentDetail_WorkingHours">Working Hours</label>
                         <div class="col-md-8">
-                            @Html.EditorFor(model => model.EmploymentDetail.WorkingHours, new { htmlAttributes = new { @class = "form-control number-only input-sm", maxlength = 13 } })
-                            @Html.ValidationMessageFor(model => model.EmploymentDetail.WorkingHours)
+                            <input class="form-control number-only input-sm text-box single-line" data-val="true" 
+                            data-val-range="required" data-val-range-max="2147483647" data-val-range-min="1" data-val-required="The Working Hours field is required." 
+                            id="EmploymentDetail_WorkingHours" maxlength="13" name="EmploymentDetail.WorkingHours" type="number">
+                            <span class="field-validation-valid" data-valmsg-for="EmploymentDetail.WorkingHours" data-valmsg-replace="true"></span>
                         </div>
                     </div>
                     <div id="div-idnumber" class="form-group mb-4 row">
-                        @Html.LabelFor(model => model.EmploymentDetail.DaysPerWeek, htmlAttributes: ModelConstant.LabelRequired)
+                        <label class="control-label col-md-4 input-sm field-required" for="EmploymentDetail_DaysPerWeek">Days per week</label>
                         <div class="col-md-8">
-                            @Html.EditorFor(model => model.EmploymentDetail.DaysPerWeek, new { htmlAttributes = new { @class = "form-control number-only input-sm", maxlength = 13 } })
-                            @Html.ValidationMessageFor(model => model.EmploymentDetail.DaysPerWeek)
+                            <input class="form-control number-only input-sm text-box single-line" data-val="true" data-val-range="required"
+                            data-val-range-max="7" data-val-range-min="1" data-val-required="The Days per week field is required." 
+                            id="EmploymentDetail_DaysPerWeek" maxlength="13" name="EmploymentDetail.DaysPerWeek" type="number">
+                            <span class="field-validation-valid" data-valmsg-for="EmploymentDetail.DaysPerWeek" data-valmsg-replace="true"></span>
                         </div>
                     </div>
+
                 </div>
                 <div class="col-md-6">
 
