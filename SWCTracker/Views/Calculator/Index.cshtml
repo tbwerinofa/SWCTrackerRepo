@@ -1,5 +1,113 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model CalculatorViewModel
 @{
+    ViewData["Title"] = "Calculator Wage Rate";
+}
+<div class="container">
+    @Html.HiddenFor(a=>a.IsPostBack)
+    <!--Page header-->
+    <div class="page-header">
+        <div class="page-leftheader">
+            <h4 class="page-title">Wage Rate Calculator</h4>
+        </div>
+        <div class="page-rightheader ms-auto d-lg-flex d-none">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="javascript:void(0)" class="d-flex"><svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"></path><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3zm5 15h-2v-6H9v6H7v-7.81l5-4.5 5 4.5V18z"></path><path d="M7 10.19V18h2v-6h6v6h2v-7.81l-5-4.5z" opacity=".3"></path></svg><span class="breadcrumb-icon"> Home</span></a></li>
+                <li class="breadcrumb-item active" aria-current="page">Wage Rate Calculator</li>
+            </ol>
+        </div>
+    </div>
+    <!--End Page header-->
+    <!-- Row -->
+    <div class="row">
+         <div class="col-xl-12 col-lg-12 col-md-12">
+            <div class="main-content-body main-content-body-profile card mg-b-20">
+                <!-- main-profile-body -->
+                <div class="main-profile-body">
+                    <div class="tab-content">
+                        <div class="tab-pane show active" id="about">
+                            <div class="card-body">
+                                <div class="mb-5">
+
+                                    <div class="row">
+                                        <div class="col-12 table-responsive">
+
+
+
+
+                                            <table class="table small table-bordered table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>
+                                                            Occupation Group
+                                                        </th>
+                                                        <th>
+                                                            Occupation
+                                                        </th>
+                                                        <th>
+                                                            Hours <br /> (per day)
+                                                        </th>
+                                                        <th>
+                                                            Days <br /> (per week)
+                                                        </th>
+                                                        <th>
+                                                            Wage <br /> Rate (per hour)
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            @Html.DropDownListFor(m => m.OccupationGroupId, Model.OccupationGroups, htmlAttributes: ModelConstant.FormControlInp)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DropDownListFor(m => m.OccupationId, Model.Occupations, htmlAttributes: ModelConstant.FormControlInp)
+                                                        </td>
+                                                        <td>
+                                                            @Html.EditorFor(model => model.WorkingHours, new { htmlAttributes = ModelConstant.FormControlInp })
+                                                            @Html.ValidationMessageFor(model => model.WorkingHours)
+                                                        </td>
+                                                        <td>
+                                                            @Html.EditorFor(model => model.DaysPerWeek, new { htmlAttributes = ModelConstant.FormControlInp })
+                                                            @Html.ValidationMessageFor(model => model.DaysPerWeek)
+                                                        </td>
+                                                        <td>
+                                                            @Html.EditorFor(model => model.Salary, new { htmlAttributes = ModelConstant.FormControlInp })
+                                                            @Html.ValidationMessageFor(model => model.Salary)
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3">
+                                                       
+                                                        </td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-primary btn-sm mt-3">Edit Profile</button>
+                                                        </td>
+                                                        <td>
+                                                            <button id="btn-refresh" type="button" class="btn btn-sm mt-3 btn-default">
+                                                                <i class="fas fa-eraser" aria-hidden="true"></i>&nbsp;Refresh
+                                                            </button>
+
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="div-detail">
+        <partial name="_Result" model="@Model" />
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/js/client.js"></script>
+    <script src="~/js/calculator.js"></script>
 }

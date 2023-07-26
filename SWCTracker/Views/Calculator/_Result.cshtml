@@ -1,0 +1,345 @@
+﻿@model CalculatorViewModel
+@{
+    var dailySalary = Model.Salary * Model.WorkingHours;
+    var weeklySalary = Model.Salary * Model.DaysPerWeek;
+    var monthlySalary = Model.Salary * Model.DaysPerWeek *4;
+
+}
+<div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Calculation Details</h4>
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <tbody>
+                            <tr>
+                                <td class="py-2 px-0">
+                                    <span class="font-weight-semibold w-50">Group </span>
+                                </td>
+                                <td class="py-2 px-0 occupationGroup"></td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-0">
+                                    <span class="font-weight-semibold w-50">Occupation </span>
+                                </td>
+                                <td class="py-2 px-0 occupation"></td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-0">
+                                    <span class="font-weight-semibold w-50">Year </span>
+                                </td>
+                                <td class="py-2 px-0 finYear">
+                                    @if(Model.WageRate!=null)
+                                    {
+                                        <span>@Model.WageRate.FinYear</span>
+                                    }
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-0">
+                                    <span class="font-weight-semibold w-50">Rate per hour </span>
+                                </td>
+                                <td class="py-2 px-0 hourRate">
+                                    @if (Model.WageRate != null)
+                                    {
+                                        <span>@Model.WageRate.Amount.ToRandValue()</span>
+                                    }
+                                    </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-0">
+                                    <span class="font-weight-semibold w-50">Salary Grade </span>
+                                </td>
+                                <td class="py-2 px-0 hourRate">
+                                    @if (Model.WageRate != null)
+                                    {
+                                        <span>@Model.WageRate.Grade</span>
+                                    }
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer text-center border-end-0 border-start-0">
+                    <a class="btn btn-lg btn-warning btn-block" href="javascript:void(0)">You earn below agreed wage rate!</a>
+                </div>
+            </div>
+      
+        <div class="card box-widget widget-user">
+            <div class="widget-user-image mx-auto mt-5 text-center"><img alt="User Avatar" class="rounded-circle" src="../../assets/images/users/16.jpg"></div>
+            <div class="card-body text-center">
+                <div class="pro-user">
+                    <h4 class="pro-user-username text-dark mb-1 font-weight-bold">John Thomson</h4>
+                    <h6 class="pro-user-desc text-muted">Web Designer</h6>
+                    <a href="editprofile.html" class="btn btn-primary btn-sm mt-3">Edit Profile</a>
+                    <a href="javascript:void(0)" class="btn btn-success btn-sm mt-3">Follow</a>
+                </div>
+            </div>
+            <div class="card-footer p-0">
+                <div class="row">
+                    <div class="col-sm-6 border-end text-center">
+                        <div class="description-block p-4">
+                            <h5 class="description-header mb-1 font-weight-bold">689k</h5>
+                            <span class="text-muted">Complaint</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="description-block text-center p-4">
+                            <h5 class="description-header mb-1 font-weight-bold">3,765</h5>
+                            <span class="text-muted">Dashboard</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-xl-8 col-lg-8 col-md-12">
+<div class="row">
+    <div class="col-xs-6 col-sm-6 col-lg-6 mt-2">
+        <div class="panel price  panel-color">
+            <div class=" bg-white text-center price-svg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#4454c3" fill-opacity="1" d="M0,96L48,133.3C96,171,192,245,288,266.7C384,288,480,256,576,240C672,224,768,224,864,192C960,160,1056,96,1152,106.7C1248,117,1344,203,1392,245.3L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+                </svg>
+                <div class="price-title">Wage Rate (hourly)</div>
+            </div>
+            <div class="panel-body text-center pt-0">
+                <p class="lead font-weight-semibold"><strong>@Model.Salary.ToRandValue() /</strong> hour</p>
+            </div>
+
+            <ul class="list-group list-group-flush text-center">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-6 border-end text-center">
+                            <div class="description-block p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">My Rate</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="description-block text-center p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">R3,765</h5>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-6 border-end text-center">
+                            <div class="description-block p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">Expected</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="description-block text-center p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">R3,765</h5>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-6 border-end text-center">
+                            <div class="description-block p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">Variance</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="description-block text-center p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">R3,765</h5>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                </ul>
+           
+            <div class="panel-footer text-center border-end-0 border-start-0">
+                <a class="btn btn-lg btn-primary btn-block" href="javascript:void(0)">You earn below agreed rate!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-lg-6 mt-2">
+        <div class="panel price  panel-color">
+            <div class="bg-white text-center price-svg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#2dce89" fill-opacity="1" d="M0,96L48,133.3C96,171,192,245,288,266.7C384,288,480,256,576,240C672,224,768,224,864,192C960,160,1056,96,1152,106.7C1248,117,1344,203,1392,245.3L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+                </svg>
+                <div class="price-title">Wage Rate (daily)</div>
+            </div>
+            <div class="panel-body text-center pt-0">
+                        <p class="lead font-weight-semibold"><strong>@dailySalary.ToRandValue() /</strong> day</p>
+            </div>
+            <ul class="list-group list-group-flush text-center">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-6 border-end text-center">
+                            <div class="description-block p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">My Rate</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="description-block text-center p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">R3,765</h5>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-6 border-end text-center">
+                            <div class="description-block p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">Expected</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="description-block text-center p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">R3,765</h5>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-6 border-end text-center">
+                            <div class="description-block p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">Variance</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="description-block text-center p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">R3,765</h5>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="panel-footer text-center border-end-0 border-start-0">
+                <a class="btn btn-lg btn-success btn-block" href="javascript:void(0)">Purchase Now!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-lg-6 mt-2">
+        <div class="panel price  panel-color">
+            <div class=" bg-white text-center price-svg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#28afd0" fill-opacity="1" d="M0,96L48,133.3C96,171,192,245,288,266.7C384,288,480,256,576,240C672,224,768,224,864,192C960,160,1056,96,1152,106.7C1248,117,1344,203,1392,245.3L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+                </svg>
+                <div class="price-title">Wage Rate (Weekly)</div>
+            </div>
+            <div class="panel-body text-center pt-0">
+                        <p class="lead font-weight-semibold"><strong>@dailySalary.ToRandValue() /</strong> week</p>
+            </div>
+            <ul class="list-group list-group-flush text-center">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-6 border-end text-center">
+                            <div class="description-block p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">My Rate</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="description-block text-center p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">R3,765</h5>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-6 border-end text-center">
+                            <div class="description-block p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">Expected</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="description-block text-center p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">R3,765</h5>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-6 border-end text-center">
+                            <div class="description-block p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">Variance</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="description-block text-center p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">R3,765</h5>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="panel-footer text-center border-end-0 border-start-0">
+                <a class="btn btn-lg btn-info btn-block" href="javascript:void(0)">Purchase Now!</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-6 col-sm-6 col-lg-6 mt-2">
+        <div class="panel price  panel-color">
+            <div class="bg-white text-center price-svg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#f72d66" fill-opacity="1" d="M0,96L48,133.3C96,171,192,245,288,266.7C384,288,480,256,576,240C672,224,768,224,864,192C960,160,1056,96,1152,106.7C1248,117,1344,203,1392,245.3L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+                </svg>
+                <div class="price-title">Wage Rate (monthly)</div>
+            </div>
+            <div class="panel-body text-center pt-0">
+                        <p class="lead font-weight-semibold"><strong>@monthlySalary.ToRandValue() /</strong> month</p>
+            </div>
+            <ul class="list-group list-group-flush text-center">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-6 border-end text-center">
+                            <div class="description-block p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">My Rate</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="description-block text-center p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">R3,765</h5>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-6 border-end text-center">
+                            <div class="description-block p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">Expected</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="description-block text-center p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">R3,765</h5>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col-sm-6 border-end text-center">
+                            <div class="description-block p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">Variance</h5>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="description-block text-center p-4">
+                                <h5 class="description-header mb-1 font-weight-bold">R3,765</h5>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="panel-footer text-center border-end-0 border-start-0">
+                <a class="btn btn-lg btn-secondary btn-block" href="javascript:void(0)">Purchase Now!</a>
+            </div>
+        </div>
+    </div>
+        </div>
+    </div>
+</div>
