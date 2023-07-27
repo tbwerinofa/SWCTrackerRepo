@@ -1,5 +1,5 @@
 ﻿@model CalculatorViewModel
-@using (Html.BeginForm("Index", "Calculator", FormMethod.Post, new { id = "form", @class = "for-horizontal", role = "form" }))
+@using (Html.BeginForm("Index", "Calculator", FormMethod.Post, new { id = "form-home", @class = "for-horizontal", role = "form" }))
    {
        
 <div class="card">
@@ -53,7 +53,7 @@
     </div>
 
     <div class="card-footer">
-            <input id="id" name="id" value="1" type="hidden">
+            <input id="SectorId" name="SectorId" value="1" type="hidden">
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group pull-right">

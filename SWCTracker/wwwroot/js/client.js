@@ -3,6 +3,9 @@ $occupationId = $('#OccupationId');
 $getOccupationByParentId = '/Calculator/GetOccupationSelectListItem_ByParentId';
 $(document).ready(function () {
 
+    if ($('#form-home').length > 0) {
+        OccupationGroupChange();
+    }
 
     $occupationGroupId.change(function (evt) {
         OccupationGroupChange();
@@ -23,4 +26,6 @@ $(document).ready(function () {
     function PopulateChild(response) {
         DropDowns.LoadData(response.Response, $occupationId, 0, true)
     }
+
+
 });

@@ -45,7 +45,7 @@ namespace SWCTracker.API
             return model;
         }
 
-        public async Task<CalculatorViewModel> GetCalculator(int id, int? occupationGroupId = null,int? occupationId =null)
+        public async Task<CalculatorViewModel> GetCalculator(int id, int? occupationGroupId = null)
         {
             var resultSet = await GetTaskGrades(id);
 
@@ -64,7 +64,6 @@ namespace SWCTracker.API
                     Value = a.OccupationId.ToString(),
                     Text = a.Occupation ?? string.Empty
                 }).ToList().Distinct().ToSelectListItem(a => a.Text, a => a.Value);
-                model.WageRate = GetWageRate(resultSet, occupationId ?? 0);
             }
             else
             {
@@ -74,8 +73,9 @@ namespace SWCTracker.API
             return model;
         }
 
-        public WageRateDetailResultSet GetWageRate(List<WageRateDetailResultSet> wageRates,int occupationId)
+        public async Task<WageRateDetailResultSet> GetWageRateAsync(int sectorId,int occupationId)
         {
+            var wageRates = await GetTaskGrades(sectorId);
             WageRateDetailResultSet model = wageRates.Where(a => a.OccupationId == occupationId).OrderByDescending(a=>a.FinYear).FirstOrDefault();
             return model;
         }
@@ -86,7 +86,9 @@ namespace SWCTracker.API
         {
            var resultSet = await GetTaskGrades(sectorId);
 
-            return resultSet.Where(a=>a.OccupationGroupId == parentId).Select(a => new
+            var model = resultSet.Where(a=>a.OccupationGroupId == parentId);
+
+            return model.Select(a => new
             {
                 Value = a.OccupationId.ToString(),
                 Text = a.Occupation ?? string.Empty

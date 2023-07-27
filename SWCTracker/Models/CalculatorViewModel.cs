@@ -7,6 +7,7 @@ namespace SWCTracker.Models
     public class CalculatorViewModel
     {
         public int Id { get; set; }
+        public int SectorId { get; set; }
         [Required, Range(1, Int32.MaxValue, ErrorMessage = "required")]
         [Display(Name = "Occupation")]
         public int OccupationId { get; set; }
@@ -32,6 +33,5 @@ namespace SWCTracker.Models
 
         public IEnumerable<SelectListItem> Occupations { get; set; }
         public bool IsPostBack { get; internal set; }
-        public WageRateDetailResultSet WageRate { get; set; }
     }
 }

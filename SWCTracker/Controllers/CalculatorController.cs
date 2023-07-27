@@ -22,10 +22,9 @@ namespace SWCTracker.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(CalculatorViewModel model)
         {
-            CalculatorViewModel dataset = await _clientBL.GetCalculator(model.Id,model.OccupationGroupId,model.OccupationId);
+            CalculatorViewModel dataset = await _clientBL.GetCalculator(model.SectorId, model.OccupationGroupId);
             model.OccupationGroups = dataset.OccupationGroups;
             model.Occupations = dataset.Occupations;
-            model.WageRate = dataset.WageRate;
             model.IsPostBack =true;
             return View(model);
         }
@@ -34,6 +33,18 @@ namespace SWCTracker.Controllers
          int parentId)
         {
             var selectListItem = await _clientBL.GetOccupationSelectListItem_ByParentId(1,parentId);
+
+            return JsonConvert.SerializeObject(new
+            {
+                Response = selectListItem
+            });
+        }
+
+        public async Task<string> GetWageRateAsync(
+          int sectorId,
+          int occupationId)
+        {
+            var selectListItem = await _clientBL.GetWageRateAsync(sectorId, occupationId);
 
             return JsonConvert.SerializeObject(new
             {
