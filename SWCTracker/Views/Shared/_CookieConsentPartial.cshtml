@@ -1,0 +1,52 @@
+﻿@using Microsoft.AspNetCore.Http.Features
+
+@{
+    var consentFeature = Context.Features.Get<ITrackingConsentFeature>();
+    var showBanner = !consentFeature?.CanTrack ?? false;
+    var cookieString = consentFeature?.CreateConsentCookie();
+}
+
+@if (showBanner)
+{
+  @*  <div id="cookieConsent" class="alert alert-info alert-dismissible fade show" role="alert">
+        Use this space to summarize your privacy and cookie use policy. <a asp-area="" asp-controller="Home" asp-action="Privacy">Learn More</a>.
+        <button type="button" class="accept-policy close" data-dismiss="alert" aria-label="Close" data-cookie-string="@cookieString">
+            <span aria-hidden="true">Accept</span>
+        </button>
+    </div>*@
+
+    <div id="cookie-popup-container" class="theme-dark" >
+        <div class="cookie-popup position-bottom" style="display: block;">
+            <div class="cookie-popup-inner">
+                <div class="cookie-popup-left">
+                    <div class="cookie-popup-headline">Cookies &amp; Privacy Policy</div>
+                    <div class="cookie-popup-sub-headline">
+                        There are no cookies used on this site, but if there were this message could be customised to provide more details.
+                        Click the accept button below to see the optional callback in action... .
+                    </div>
+                </div>
+                <div class="cookie-popup-right">
+                    <button id="cookieConsent" class="cookie-popup-accept-cookies cookieConsent" data-cookie-string="@cookieString">Accept</button>
+                    <a href="#" class="cookie-popup-learn-more">View More</a>
+                </div>
+            </div>
+            <div class="cookie-popup-lower" style="display: none;">
+                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et
+                dolore magnam aliquam quaerat voluptatem..
+
+            </div>
+        </div>
+    </div>
+
+@*    <script>
+        (function () {
+            var button = document.querySelector("button[data-cookie-string]");
+            button.addEventListener("click", function (event) {
+                document.cookie = '${button.dataset.cookieString}"';
+            }, false);
+        })();
+    </script>*@
+
+ 
+}

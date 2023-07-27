@@ -18,6 +18,7 @@ namespace SWCTracker.Controllers
                 var model = await _subSectorBL.GetSubSectors();
                 return View(model);
             }
+
         }
     }
 

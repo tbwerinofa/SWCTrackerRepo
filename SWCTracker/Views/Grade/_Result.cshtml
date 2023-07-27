@@ -1,0 +1,155 @@
+﻿@model CalculatorViewModel
+@{
+
+}
+<div class="row">
+    <div class="col-xl-4 col-lg-4 col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Calculation Details</h4>
+
+                <div class="row text-center">
+                    <div class="col-md-12 mb-4 mt-sm-0 rate-chart">
+                        
+                    </div>
+                    <div class="col-md-12">
+                        <h2 class="mb-0 fs-50 mt-3 counter  font-weight-bold salary-rate"></h2>
+                        <span class=" fs-12 text-muted"><span class="percent-diference"></span></span>
+                        <p class="mt-5 mb-2 text-muted btn-rate"></p>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-md-12 mb-4 mt-sm-0">
+                <div class="table-responsive">
+                    <table class="table mb-0">
+                        <tbody>
+                            <tr>
+                                <td class="py-2 px-0">
+                                    <span class="font-weight-semibold w-50">Group </span>
+                                </td>
+                                <td class="py-2 px-0 occupationGroup"></td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-0">
+                                    <span class="font-weight-semibold w-50">Occupation </span>
+                                </td>
+                                <td class="py-2 px-0 occupation"></td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-0">
+                                    <span class="font-weight-semibold w-50">Year </span>
+                                </td>
+                                <td class="py-2 px-0 rate-finYear">
+                                   
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-0">
+                                    <span class="font-weight-semibold w-50">Salary Grade </span>
+                                </td>
+                                <td class="py-2 px-0 rate-grade">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-0">
+                                    <span class="font-weight-semibold w-50">Rate per hour </span>
+                                </td>
+                                <td class="py-2 px-0 rate-amount">
+                                   
+                                    </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center border-end-0 border-start-0">
+                    <a href="/Complaint" class="btn btn-lg btn-warning btn-block" type="button">Submit complaint</a>
+                </div>
+            </div>
+
+    </div><!--result summary-->
+
+    <div class="col-xl-8 col-lg-8 col-md-12">
+<div class="row">
+            <div class="col-xs-6 col-sm-6 col-lg-6 mt-2 hourly-rate">
+        <div class="panel price  panel-color">
+            <div class=" bg-white text-center price-svg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#4454c3" fill-opacity="1" d="M0,96L48,133.3C96,171,192,245,288,266.7C384,288,480,256,576,240C672,224,768,224,864,192C960,160,1056,96,1152,106.7C1248,117,1344,203,1392,245.3L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+                </svg>
+                <div class="price-title">Wage Rate (hourly)</div>
+            </div>
+            <div class="panel-body text-center pt-0">
+                <p class="lead font-weight-semibold"><strong><span class="my-rate"></span> /</strong> hour</p>
+            </div>
+
+           @Html.Partial("_Rates")
+           
+            <div class="panel-footer text-center border-end-0 border-start-0">
+                <button type="button" class="btn btn-lg btn-primary btn-block btn-rate"></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-6 col-lg-6 mt-2 daily-rate">
+        <div class="panel price  panel-color">
+            <div class="bg-white text-center price-svg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#2dce89" fill-opacity="1" d="M0,96L48,133.3C96,171,192,245,288,266.7C384,288,480,256,576,240C672,224,768,224,864,192C960,160,1056,96,1152,106.7C1248,117,1344,203,1392,245.3L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+                </svg>
+                <div class="price-title">Wage Rate (daily)</div>
+            </div>
+            <div class="panel-body text-center pt-0">
+                        <p class="lead font-weight-semibold"><strong><span class="my-rate"></span> /</strong> day</p>
+            </div>
+                    @Html.Partial("_Rates")
+            <div class="panel-footer text-center border-end-0 border-start-0">
+                <button class="btn btn-lg btn-success btn-block btn-rate" type="button"></button>
+            </div>
+        </div>
+    </div><!--daily-->
+
+    <div class="col-xs-6 col-sm-6 col-lg-6 mt-2 weekly-rate">
+        <div class="panel price  panel-color">
+            <div class=" bg-white text-center price-svg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#28afd0" fill-opacity="1" d="M0,96L48,133.3C96,171,192,245,288,266.7C384,288,480,256,576,240C672,224,768,224,864,192C960,160,1056,96,1152,106.7C1248,117,1344,203,1392,245.3L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+                </svg>
+                <div class="price-title">Wage Rate (Weekly)</div>
+            </div>
+            <div class="panel-body text-center pt-0">
+                        <p class="lead font-weight-semibold"><strong> <span class="my-rate"></span>/</strong> week</p>
+            </div>
+                    @Html.Partial("_Rates")
+            <div class="panel-footer text-center border-end-0 border-start-0">
+                        <button class="btn btn-lg btn-info btn-block btn-rate" type="button"></button>
+            </div>
+        </div>
+    </div><!--weekly-->
+
+    <div class="col-xs-6 col-sm-6 col-lg-6 mt-2 monthly-rate">
+        <div class="panel price  panel-color">
+            <div class="bg-white text-center price-svg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                    <path fill="#f72d66" fill-opacity="1" d="M0,96L48,133.3C96,171,192,245,288,266.7C384,288,480,256,576,240C672,224,768,224,864,192C960,160,1056,96,1152,106.7C1248,117,1344,203,1392,245.3L1440,288L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+                </svg>
+                <div class="price-title">Wage Rate (monthly)</div>
+            </div>
+            <div class="panel-body text-center pt-0">
+                        <p class="lead font-weight-semibold"><strong>
+                                <span class="my-rate"></span>
+                            /</strong> month</p>
+            </div>
+                    @Html.Partial("_Rates")
+            <div class="panel-footer text-center border-end-0 border-start-0">
+                        <button class="btn btn-lg btn-secondary btn-block btn-rate" type="button"></button>
+            </div>
+        </div>
+    </div><!--monthly-->
+        </div>
+    </div> <!--result per units-->
+</div>
