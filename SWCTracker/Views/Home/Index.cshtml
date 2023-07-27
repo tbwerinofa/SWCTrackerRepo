@@ -408,7 +408,23 @@
     <script src="../../assets/plugins/chart/chart.min.js"></script>
     <script src="../../assets/plugins/chart/chart.extension.js"></script>
 
+    <script src="../../assets/js/index2.js"></script>
+
     <!-- Index js-->
     <script src="../../assets/js/index4.js"></script>
     <script src="~/js/client.js"></script>
-}
+    <script src="../../assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="../../assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#table-results').DataTable({
+            "bSort": false,
+            language: {
+                responsive: "true"
+            }
+        });
+    });
+    </script>
+    }
