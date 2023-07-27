@@ -5,6 +5,8 @@ $getOccupationByParentId = '/Calculator/GetOccupationSelectListItem_ByParentId';
 
 $(document).ready(function () {
 
+    $('.input-rate').val();
+
     if ($('#form-home').length > 0) {
         $occupationGroupId = $('#OccupationGroupId');
         $occupationId = $('#OccupationId');

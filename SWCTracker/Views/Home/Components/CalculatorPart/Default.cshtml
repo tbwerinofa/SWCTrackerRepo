@@ -29,21 +29,37 @@
             <div class="form-group mb-4 row">
                 @Html.LabelFor(model => model.WorkingHours, htmlAttributes: ModelConstant.LabelRequired)
                 <div class="col-md-8">
-                    @Html.EditorFor(model => model.WorkingHours, new { htmlAttributes = ModelConstant.FormControlInp })
+                            <div class="input-group">
+                                @Html.EditorFor(model => model.WorkingHours, new { htmlAttributes =  new { @class = "input-rate form-control input-sm",max="24" ,maxlength="2"  }})
+
+                                <span class="">
+                                    <button class="btn btn-default" type="button">/day</button>
+                                </span>
+                            </div>
                     @Html.ValidationMessageFor(model => model.WorkingHours)
                 </div>
             </div> <!--Surname-->
             <div class="form-group mb-4 row">
                 @Html.LabelFor(model => model.DaysPerWeek, htmlAttributes: ModelConstant.LabelRequired)
                 <div class="col-md-8">
-                    @Html.EditorFor(model => model.DaysPerWeek, new { htmlAttributes = ModelConstant.FormControlInp })
+                            <div class="input-group">
+                                @Html.EditorFor(model => model.DaysPerWeek, new { htmlAttributes =  new { @class = "input-rate form-control input-sm",max="7" ,maxlength="1"  } })
+                                <span class="">
+                                    <button class="btn btn-default" type="button">/week</button>
+                                </span>
+                            </div>
                     @Html.ValidationMessageFor(model => model.DaysPerWeek)
                 </div>
             </div><!--Other Name-->
             <div class="form-group mb-4 row">
-                @Html.LabelFor(model => model.Salary, htmlAttributes: ModelConstant.LabelStandard)
+                        @Html.LabelFor(model => model.Salary, htmlAttributes: ModelConstant.LabelRequired)
                 <div class="col-md-8">
-                    @Html.EditorFor(model => model.Salary, new { htmlAttributes = ModelConstant.FormControlInp })
+                            <div class="input-group">
+                                @Html.EditorFor(model => model.Salary, new { htmlAttributes = new { @class = "input-rate form-control input-sm",max="10000" ,maxlength="5"  } })
+                                <span class="">
+                                    <button class="btn btn-default" type="button">/hour</button>
+                                </span>
+                            </div>
                     @Html.ValidationMessageFor(model => model.Salary)
                 </div>
             </div><!--First Name-->

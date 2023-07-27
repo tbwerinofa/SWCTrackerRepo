@@ -1,5 +1,5 @@
 ﻿var $isPostBack = $('#IsPostBack');
-$formjoin = $('#form-main');
+$formMain = $('#form-main');
 $getWageRateUrl = '/Calculator/GetWageRate';
 $sectorId = $('#SectorId');
 $occupationGroupId = $('#OccupationGroupId');
@@ -20,7 +20,8 @@ $paramInput = $('input');
                 PageEvents.SelectChange();
             })
 
-            $paramInput.keyup(function (evt) {
+            $paramInput.keyup(function (e) {
+
                 PageEvents.SelectChange();
             })
 
@@ -31,14 +32,15 @@ $paramInput = $('input');
 
 var PageEvents = {
     SelectChange: function () {
-
-                AjaxPostBack.Get($getWageRateUrl, {
-                'sectorId':$sectorId.val(),
+        if ($formMain.valid) {
+            AjaxPostBack.Get($getWageRateUrl, {
+                'sectorId': $sectorId.val(),
                 'occupationId': $occupationId.val()
-                },
-                    PageEvents.CalculateCost);
-
             },
+                PageEvents.CalculateCost);
+
+        }
+    },
     RefreshPage:  function () {
             $occupationGroupId.val('0');
         $occupationId.val('0');
