@@ -7,7 +7,7 @@ $occupationId = $('#OccupationId');
 $workingHours = $('#WorkingHours');
 $daysPerWeek = $('#DaysPerWeek');
 $salary = $('#Salary');
-        $quantity = $('#Quantity');
+$paramInput = $('input');
         $btnRefresh = $('#btn-refresh');
         $divDetail = $('#div-detail');
         $(document).ready(function () {
@@ -20,8 +20,8 @@ $salary = $('#Salary');
                 PageEvents.SelectChange();
             })
 
-            $quantity.keyup(function (evt) {
-            PageEvents.CalculateCost();
+            $paramInput.keyup(function (evt) {
+                PageEvents.SelectChange();
             })
 
         $btnRefresh.click(function (evt) {
@@ -31,7 +31,6 @@ $salary = $('#Salary');
 
 var PageEvents = {
     SelectChange: function () {
-
 
                 AjaxPostBack.Get($getWageRateUrl, {
                 'sectorId':$sectorId.val(),
@@ -60,28 +59,41 @@ var PageEvents = {
         var weeklySection = $('.weekly-rate');
         var monthlySection = $('.monthly-rate');
 
-        var isNegativeVariance = $salary.val() * 1 < response.Response.Amount
+        var amount = 1.0;
+
+
+        if (response.Response == null) {
+            $('.rate-finYear').html('');
+            $('.rate-grade').html('');
+            $('.rate-amount').html('');
+        } else {
+             amount = response.Response.Amount;
+            $('.rate-finYear').html(response.Response.FinYear);
+            $('.rate-grade').html(response.Response.Grade);
+            $('.rate-amount').html(ValueFormatter.ToRand(amount));
+        }
+
+        var isNegativeVariance = $salary.val() * 1 < amount;
 
         var btnMessage = isNegativeVariance ? 'You earn below agreed rate!' : 'You salary rate is compliant!';
         $('.btn-rate').html(btnMessage);
 
-        PageEvents.SummarySection(isNegativeVariance, $salary.val(), response.Response.Amount);
+        PageEvents.SummarySection(isNegativeVariance, $salary.val(), amount);
 
 
         var weekHours = $daysPerWeek.val() * $workingHours.val() * 1;
         var monthHours = weekHours * 4;
 
-        PageEvents.PopulateSection(hourlySection, $salary.val(), 1,1, response.Response.Amount,'Hours');
-        PageEvents.PopulateSection(dailySection, $salary.val(), $workingHours.val(), $workingHours.val(), response.Response.Amount,'Hours');
-        PageEvents.PopulateSection(weeklySection, $salary.val(), weekHours, $daysPerWeek.val(), response.Response.Amount,'Days');
-        PageEvents.PopulateSection(monthlySection, $salary.val(), monthHours, $daysPerWeek.val() * 4, response.Response.Amount, 'Days');
+        PageEvents.PopulateSection(hourlySection, $salary.val(), 1, 1, amount,'Hours');
+        PageEvents.PopulateSection(dailySection, $salary.val(), $workingHours.val(), $workingHours.val(), amount,'Hours');
+        PageEvents.PopulateSection(weeklySection, $salary.val(), weekHours, $daysPerWeek.val(), amount,'Days');
+        PageEvents.PopulateSection(monthlySection, $salary.val(), monthHours, $daysPerWeek.val() * 4, amount, 'Days');
 
 
-        $('.rate-finYear').html(response.Response.FinYear);
-        $('.rate-grade').html(response.Response.Grade);
-        $('.rate-amount').html(ValueFormatter.ToRand(response.Response.Amount));
+
 
     },
+
     SummarySection(isNegativeVariance,salary,amount) {
 
         var wageRate = (salary * 1) / amount;

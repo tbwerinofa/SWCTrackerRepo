@@ -49,7 +49,9 @@ namespace SWCTracker.API
         {
             var resultSet = await GetTaskGrades(id);
 
-            CalculatorViewModel model = new CalculatorViewModel();
+            CalculatorViewModel model = new CalculatorViewModel{ 
+            SectorId =id
+            };
 
             model.OccupationGroups = resultSet.Select(a => new
             {
