@@ -6,6 +6,6 @@ namespace SWCTracker.API
     {
         Task<ComplaintViewModel> GetModelAsync();
 
-        SaveResult SaveModel(ComplaintViewModel model);
+        Task<SaveResult> SaveModelAsync(ComplaintViewModel model);
     }
 }

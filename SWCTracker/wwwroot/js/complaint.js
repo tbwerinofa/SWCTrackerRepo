@@ -124,7 +124,7 @@ var PostBackActions = {
 
         } else {
 
-            ElementFn.ToggleVisibility(false, $complaintWizard);
+            ElementFn.ToggleVisibility(false, $('.complaint-container'));
             ElementFn.ToggleVisibility(true, $('#save-confirmation'));
         }
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 using SWCTracker.Models;
 using System.Net;
+using System.Net.Http.Formatting;
 using System.Reflection;
 
 namespace SWCTracker.API
@@ -8,10 +9,12 @@ namespace SWCTracker.API
     public class ComplaintAPIClient : IComplaintAPIClient
     {
         private readonly HttpClient _client;
+        private  readonly string? RouteId;
         public ComplaintAPIClient(HttpClient client, IConfiguration config)
         {
             _client = client;
             _client.BaseAddress = new System.Uri(config.GetValue<string>("NUMConsecApi"));
+            RouteId = config.GetValue<string>("RouteGuid");
         }
 
         #region Read
@@ -35,9 +38,12 @@ namespace SWCTracker.API
         #endregion
 
         #region Save
-        public SaveResult SaveModel(ComplaintViewModel model)
+        public async Task<SaveResult> SaveModelAsync(ComplaintViewModel model)
         {
-            SaveResult saveResult = new SaveResult{IsSuccess=true };
+            model.SessionUserId= RouteId;
+            var requestUri = "complaint";
+            var response = await _client.PostAsync(requestUri, model, new JsonMediaTypeFormatter());
+            SaveResult saveResult = await response.Content.ReadAsAsync<SaveResult>();
 
             return saveResult;
         }

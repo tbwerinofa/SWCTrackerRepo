@@ -20,7 +20,7 @@ namespace SWCTracker.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public JsonResult SaveModel(ComplaintViewModel viewModel)
+        public async Task<JsonResult> SaveModel(ComplaintViewModel viewModel)
         {
 
             SaveResult resultSet = new SaveResult();
@@ -36,7 +36,7 @@ namespace SWCTracker.Controllers
             {
 
 
-                resultSet =  _modelBL.SaveModel(viewModel);
+                resultSet =  await _modelBL.SaveModelAsync(viewModel);
             }
             else
             {
