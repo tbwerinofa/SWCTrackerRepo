@@ -1,5 +1,85 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model IList<WageRateDetailResultSet>
 @{
+    ViewData["Title"] = "Working Conditions";
+
+    var latestYear = Model.Select(a => a.FinYear).OrderByDescending(a => a).FirstOrDefault();
+    var current = Model.Where(a => a.FinYear == latestYear).FirstOrDefault();
+    var previous = Model.Where(a => a.FinYear != latestYear).OrderByDescending(a => a.FinYear).FirstOrDefault();
+    var applicableYears = Model.Select(a => new
+    {
+        FinYear = a.FinYear,
+        CPIIndex = a.CPIIndex,
+        WageRate = a.PropertyValue
+    }).GroupBy(a => new { a.CPIIndex, a.WageRate, a.FinYear })
+            .Select(a => new
+            {
+                FinYear = a.Key.FinYear,
+                CPIIndex = a.Key.CPIIndex,
+                WageRate = a.Key.WageRate
+            }).OrderBy(a => a.FinYear);
+
+
+
+    var wageAmountDifference = current.AveragePropertyValue - previous.AveragePropertyValue;
+    var wageRateDifference = current.PropertyValue - previous.PropertyValue;
+    var iteration = 1;
+    var background = "bg-success";
 }
+
+
+
+<div class="container">
+    <!--Page header-->
+    <div class="page-header">
+        <div class="page-leftheader">
+            <h4 class="page-title">@ViewData["Title"]</h4>
+        </div>
+    </div>
+
+
+<ul class="list-group list-group-flush text-center">
+    <li class="list-group-item">
+        <strong>Bargaining Council of Civil Engineering</strong>
+    </li>
+    <li class="list-group-item">
+        <strong>Patterson Grading System</strong>
+    </li>
+    <li class="list-group-item">
+        <div class="row">
+            <div class="col-sm-12 border-end text-center">
+                <div class="description-block p-4">
+                    <h5 class="description-header mb-1 font-weight-bold">Signatories</h5>
+                </div>
+                <div class="description-block text-center p-4">
+                    <ul class="list-group">
+                        @foreach(var record in Model)
+                            {
+                                <li class="list-group-item">
+                                    <div class="row">
+                                        <div class="col-sm-6 border-end text-center">
+                                            @record.EmploymentCondition
+                                        </div>
+                                        <div class="col-sm-6">
+                                            @record.PropertyValue
+                                        </div>
+                                    </div>
+                                </li>
+                            }
+                            
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-6 border-end text-center">
+                                    NUM
+                                </div>
+                                <div class="col-sm-6">
+                                    BCAWU
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </li>
+</ul>
+</div>

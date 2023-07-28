@@ -1,0 +1,87 @@
+﻿@model IList<WageRateDetailResultSet>
+@{
+
+    var latestYear = Model.Select(a => a.FinYear).OrderByDescending(a => a).FirstOrDefault();
+
+
+    var grades = Model.Where(a => a.FinYear == latestYear).Select(a => new
+    {
+        Ordinal = a.Ordinal,
+        Grade = a.Grade,
+        Group = a.OccupationGroup,
+        Name = a.Occupation,
+        Rate = a.Amount,
+    })
+    .GroupBy(a => new { a.Ordinal, a.Grade, a.Group, a.Name, a.Rate })
+    .Select(a => new
+    {
+        Ordinal = a.Key.Ordinal,
+        Grade = a.Key.Grade,
+        Group = a.Key.Group,
+        Name = a.Key.Name,
+        Rate = a.Key.Rate
+    })
+     .GroupBy(a => new { a.Ordinal, a.Grade })
+      .Select(a => new
+      {
+          Ordinal = a.Key.Ordinal,
+          Grade = a.Key.Grade,
+          GroupCount = a.Select(b => b.Group).Distinct().Count(),
+          Count = a.Select(b => b.Name).Distinct().Count(),
+          Average = a.Average(b => b.Rate)
+      })
+    .OrderBy(a => a.Ordinal);
+
+}
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Wage Rate/hr By Grade</h3>
+
+    </div>
+    <div class="card-body">
+
+        <div id="gradeChart" class="h-300"></div>
+        <div class="row mt-5">
+            <div class="col text-center">
+                <span class="text-muted float-start"><div class="w-3 h-3 bg-primary br-3 me-1 mt-1 float-start"></div> Grade</span>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-sm-12">
+
+                <div class="table-responsive grid-wrapper invoice-table-responsive">
+                    <table class="table card-table table-striped table-vcenter text-nowrap mb-0 border">
+                        <thead>
+                            <tr>
+                                <th class="wd-45p border-bottom-0 py-4 font-weight-bold">Grade</th>
+                                <th class="border-bottom-0 py-4 font-weight-bold">Groups</th>
+                                <th class="border-bottom-0 py-4 font-weight-bold">Occupations</th>
+                                <th class="border-bottom-0 py-4 font-weight-bold">Wage Rate (per hour)</th>
+                                <th class="border-bottom-0 py-4 font-weight-bold"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in grades)
+                            {
+                                <tr>
+                                    <td>
+                                        <strong>
+                                            @item.Ordinal
+                                            <input type="hidden" class="RateByGrade" name="RateByGrade" data-id="@item.Ordinal" data-count="@item.Average" />
+                                        </strong>
+                                    </td>
+                                    <td><strong>@item.GroupCount</strong></td>
+                                    <td><strong>@item.Count</strong></td>
+                                    <td class="bg-success text-white"><strong>@item.Average.ToRandValue()</strong></td>
+                                    <td><a href="/Grade/Index/@item.Ordinal" class="btn btn-primary btn-sm">view more</a></td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

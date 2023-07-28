@@ -21,13 +21,12 @@
 
 
 @section scripts{
-    <script src="../../assets/js/index2.js"></script>
+@*    <script src="../../assets/js/index2.js"></script>*@
     <script src="~/js/client.js"></script>
     <script type="text/javascript">
 
     $(document).ready(function () {
 
- 
             /*----P-scrolling JS ----*/
             const ps31 = new PerfectScrollbar('.countryscroll', {
                 useBothWheelAxes: true,
@@ -42,6 +41,7 @@
         });
 
             ChartBuilder.CPIvsRate();
+            ChartBuilder.RateByGrade();
     });
 
         var ChartBuilder = {
@@ -144,7 +144,92 @@
                 var chart5 = document.getElementById('echart1');
                 var barChart5 = echarts.init(chart5);
                 barChart5.setOption(option5);
-            }
+            },
+            RateByGrade: function () {
+                objArr = [];
+                objFinYear = [];
+
+
+                var dataContainer = $('.RateByGrade');
+
+
+                $.each(dataContainer, function (index, record) {
+                    objArr.push($(this).data('count'));
+                    objFinYear.push($(this).data('id'));
+                });
+
+                var chartdata3 = [
+                    {
+                        name: 'Wage Rate',
+                        type: 'bar',
+                        smooth: true,
+                        data: objArr,
+                        //lineStyle: {
+                        //    normal: {
+                        //        opacity: 0.8,
+                        //        width: 4,
+                        //        curveness: 1
+                        //    }
+                        //}
+                    }
+                ];
+
+                var option5 = {
+                    grid: {
+                        top: '6',
+                        right: '0',
+                        bottom: '17',
+                        left: '35',
+                    },
+                    tooltip: {
+                        show: true,
+                        showContent: true,
+                        alwaysShowContent: true,
+                        triggerOn: 'mousemove',
+                        trigger: 'axis',
+                        axisPointer:
+                        {
+                            label: {
+                                show: false,
+                            }
+                        }
+
+                    },
+                    xAxis: {
+                        data: objFinYear,
+                        axisLine: {
+                            lineStyle: {
+                                color: 'rgba(67, 87, 133, .09)'
+                            }
+                        },
+                        axisLabel: {
+                            fontSize: 10,
+                            color: '#8e9cad'
+                        }
+                    },
+                    yAxis: {
+                        splitLine: {
+                            lineStyle: {
+                                color: 'rgba(67, 87, 133, .09)'
+                            }
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                color: 'rgba(67, 87, 133, .09)'
+                            }
+                        },
+                        axisLabel: {
+                            fontSize: 10,
+                            color: '#8e9cad'
+                        }
+                    },
+                    series: chartdata3,
+                    color: ['#4454c3', '#f72d66']
+                };
+                var chart5 = document.getElementById('gradeChart');
+                var barChart5 = echarts.init(chart5);
+                barChart5.setOption(option5);
+            },
         }
     </script>
 

@@ -1,0 +1,347 @@
+﻿@model IList<WageRateDetailResultSet>
+@{
+
+    var latestYear = Model.Select(a => a.FinYear).OrderByDescending(a => a).FirstOrDefault();
+    var earliestYear = Model.Select(a => a.FinYear).OrderBy(a => a).FirstOrDefault();
+    var latestWageRates = Model.Where(a => a.FinYear == latestYear);
+    int iteration = 0;
+    var highestWageRate = Model.OrderByDescending(a => a.PropertyValue)
+               .Select(a => new
+               {
+                   FinYear = a.FinYear,
+                   WageRate = a.PropertyValue,
+                   CPIIndex = a.CPIIndex,
+                   EffectiveRate = a.PropertyValue - a.CPIIndex
+               }).GroupBy(a => new
+               {
+                   a.FinYear,
+                   a.WageRate,
+                   a.CPIIndex,
+                   a.EffectiveRate
+               }).Select((a, b) => new
+               {
+                   Ordinal = b + 1,
+                   FinYear = a.Key.FinYear,
+                   WageRate = a.Key.WageRate,
+                   CPIIndex = a.Key.CPIIndex,
+                   EffectiveRate = a.Key.EffectiveRate
+               });
+    var higestRate = highestWageRate.OrderByDescending(a => a.WageRate).FirstOrDefault();
+
+    var wageRateByOccupationGroup = latestWageRates.Select(a => new
+    {
+        FinYear = a.FinYear,
+        Group = a.OccupationGroup,
+        Name = a.Occupation,
+        WageRate = a.PropertyValue,
+        CPIIndex = a.CPIIndex,
+        Amount = a.Amount,
+        Ordinal = a.Ordinal
+    }).GroupBy(a => new {a.Group,a.Name,a.FinYear, a.CPIIndex, a.WageRate, a.Amount,a.Ordinal })
+        .Select(a => new
+        {
+            FinYear = a.Key.FinYear,
+            Group = a.Key.Group,
+            Name = a.Key.Name,
+            Amount = a.Key.Amount,
+            Ordinal = a.Key.Ordinal,
+            CPIIndex = a.Key.CPIIndex,
+            WageRate = a.Key.WageRate
+        }).OrderBy(a => a.Amount);
+}
+<div class="card">
+    <div class="card-header">
+        <div class="card-title">FAQ</div>
+    </div>
+    <div class="card-body">
+
+        <!-- Accordion begin -->
+        <ul class="demo-accordion accordionjs m-0" data-active-index="false">
+
+            <!-- Section 1 -->
+            <li>
+                <div>
+                    <h7>  1:In which year is the highest wage rate increase?</h7>
+                    </div>
+                <div>
+                    <div id="tabs-1">
+                        <p>
+                            The highest Wage Rate increase of @higestRate.WageRate % is <strong>was negotiated in the  @higestRate.FinYear </strong> with <strong>
+                                </strong>
+                        </p>
+                        <p class="well">
+
+
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Stats (Top 5 Wage Rate Increases) &nbsp;<i class="fas fa-trophy"></i></h6>
+                                </div>
+                                <div class="card-body grid-wrapper">
+                                    <table class="table table-bordered table-condensed small">
+                                        <thead>
+                                            <tr>
+                                                <th>Rank</th>
+                                                <th>Year</th>
+                                                <th>Wage Rate</th>
+                                                <th>CPI Index</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in highestWageRate.OrderByDescending(a => a.WageRate).Take(5))
+                                            {
+                                                <tr>
+                                                    <td>@item.Ordinal</td>
+                                                    <td>@item.FinYear</td>
+                                                    <td>@item.WageRate %</td>
+                                                    <td>@item.CPIIndex %</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+@*                                <div class="card-footer text-primary">
+
+                                    <small>
+                                        <i class="fa fa-info-circle"></i>&nbsp;
+                                        <i>Our information is based on the information we have collected in our database for the period @earliestYear - @latestYear</i>
+
+                                    </small>
+                                </div>*@
+                            </div>
+                        </p>
+                    </div> <!--Most popular race-->
+                </div>
+            </li>
+
+            <!-- Section 2 -->
+            <li>
+                <div> <h7>2: Which year is the most effective inflation adjusted increase?</h7></div>
+                <div>
+                    <div id="tabs-2">
+                        <p>
+                            @{
+
+                                var effectitiveRateList = highestWageRate.OrderByDescending(a=>a.EffectiveRate);
+                                var highestEffectiveRate = effectitiveRateList.FirstOrDefault();
+                                iteration = 1;
+
+                            }
+                            The most effective rate change is <strong> @highestEffectiveRate.EffectiveRate %</strong> in the year <strong>@highestEffectiveRate.FinYear</strong><br />
+                            The Wage Rate was
+                            <i>
+                                @highestEffectiveRate.WageRate %
+                            </i> Vs <strong> @highestEffectiveRate.CPIIndex %</strong> inflation.
+                        </p>
+                        <p class="well">
+
+
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Stats &nbsp;<i class="fa fa-chart"></i></h6>
+                                </div>
+                                <div class="card-body grid-wrapper">
+                                    <table class="table table-bordered table-condensed small">
+                                        <thead>
+                                            <tr>
+                                                <th>Rank</th>
+                                                <th>Year</th>
+                                                <th>Wage Rate</th>
+                                                <th>CPI Index</th>
+                                                <th>Effective Rate</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in effectitiveRateList.OrderByDescending(a => a.EffectiveRate).Take(5))
+                                            {
+                                                <tr>
+                                                    <td>@iteration</td>
+                                                    <td>@item.FinYear</td>
+                                                    <td>@item.WageRate %</td>
+                                                    <td>@item.CPIIndex %</td>
+                                                    <td>@item.EffectiveRate %</td>
+                                                </tr>
+                                                iteration++;
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </p>
+                    </div> <!--Popular distance-->
+                </div>
+            </li>
+
+
+            <!-- Section 3 -->
+            <li>
+                <div> <h7>3: Which is the highest paying occupation</h7></div>
+                <div>
+                    <div id="tabs-3">
+
+
+                            <p>
+                            The highest paying occupation is <strong> @wageRateByOccupationGroup.OrderByDescending(a => a.Amount).FirstOrDefault().Name </strong>
+                            with an amount of <strong> @wageRateByOccupationGroup.OrderByDescending(a => a.Amount).FirstOrDefault().Amount.ToRandValue() /hr </strong>
+                            </p>
+                            <p class="well">
+
+
+                                <div class="card shadow mb-4">
+                                    <div class="card-header py-3">
+                                        <h6 class="m-0 font-weight-bold text-primary">Stats &nbsp;<i class="fa fa-list"></i></h6>
+                                    </div>
+                                    <div class="card-body grid-wrapper">
+                                        Our information is based on the following statistics
+                                        <table class="table table-bordered table-condensed small">
+                                            <thead>
+                                                <tr>
+                                                    <th>Grade</th>
+                                                    <th>Group</th>
+                                                    <th>Name</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach (var item in @wageRateByOccupationGroup.OrderByDescending(a => a.Amount).Take(5))
+                                                {
+                                                    <tr>
+                                                        <td>@item.Ordinal</td>
+                                                        <td>@item.Group</td>
+                                                        <td>@item.Name</td>
+                                                        <td>@item.Amount</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </p>
+
+
+                    </div>
+                </div>
+            </li>
+
+            <!-- Section 4 -->
+            <li>
+                <div><h7>4: Which Grade has the largest number of occupations</h7></div>
+                <div>
+                    <div id="tabs-4">
+                        <p>
+                            @{
+                                var highestGrades = wageRateByOccupationGroup.GroupBy(a => new
+                                {
+                                    a.Group,
+                                    a.Name,
+                                    a.Ordinal,
+                                    a.Amount
+                                }).Select((a,b) => new
+                                {
+                                    Rank = b+1,
+                                    Ordinal = a.Key.Ordinal,
+                                    Amount = a.Average(b=>b.Amount),
+                                    Count = a.Count()
+                                }).OrderByDescending(a => a.Count)
+                                .Take(5);
+                            }
+                            Grade @highestGrades.FirstOrDefault().Ordinal is <strong>has the highest number of occupations </strong> with a count of
+                            <strong> @highestGrades.FirstOrDefault().Count </strong> occupations
+                        </p>
+                        <p class="well">
+
+
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Stats &nbsp;<i class="fa fa-list"></i></h6>
+                                </div>
+                                <div class="card-body grid-wrapper">
+                                    The top 5 Grade with the highest number of occupations are
+                                    <table class="table table-bordered table-condensed small">
+                                        <thead>
+                                            <tr>
+                                                <th>Rank</th>
+                                                <th>Grade</th>
+                                                <th>Occupations</th>
+                                                <th>Average Rate/hr</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in highestGrades)
+                                            {
+                                                <tr>
+                                                    <td>@item.Rank</td>
+                                                    <td>@item.Ordinal</td>
+                                                    <td>@item.Count</td>
+                                                    <td>@item.Amount</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </p>
+                    </div> <!--Fastest ranking-->
+                </div>
+            </li>
+
+            <li>
+                <div> <h7>5: Which is the least paying occupation?</h7></div>
+                <div>
+                    <div id="tabs-5">
+
+
+                        <p>
+                            The least paying occupation is <strong> @wageRateByOccupationGroup.OrderBy(a => a.Amount).FirstOrDefault().Name </strong>
+                            with an amount of <strong> @wageRateByOccupationGroup.OrderBy(a => a.Amount).FirstOrDefault().Amount.ToRandValue() /hr </strong>
+                        </p>
+                        <p class="well">
+
+
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Stats &nbsp;<i class="fa fa-list"></i></h6>
+                                </div>
+                                <div class="card-body grid-wrapper">
+                                    Our information is based on the following statistics
+                                    <table class="table table-bordered table-condensed small">
+                                        <thead>
+                                            <tr>
+                                                <th>Grade</th>
+                                                <th>Group</th>
+                                                <th>Name</th>
+                                                <th>Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in @wageRateByOccupationGroup.OrderBy(a => a.Amount).Take(5))
+                                            {
+                                                <tr>
+                                                    <td>@item.Ordinal</td>
+                                                    <td>@item.Group</td>
+                                                    <td>@item.Name</td>
+                                                    <td>@item.Amount</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </p>
+
+
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="card-footer bg-primary ">
+        <div class="text-white">
+            <small>
+                <i class="fa fa-info-circle"></i>&nbsp;
+                <i>Our information is based on the information we have collected for the period  @earliestYear - @latestYear</i>
+
+
+            </small>
+        </div>
+    </div>
+</div>

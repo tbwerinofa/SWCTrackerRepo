@@ -1,6 +1,9 @@
 ﻿@model IList<WageRateDetailResultSet>
 @{
 
+    var latestYear = Model.Select(a => a.FinYear).OrderByDescending(a => a).FirstOrDefault();
+    var current = Model.Where(a => a.FinYear == latestYear).FirstOrDefault();
+    var previous = Model.Where(a => a.FinYear != latestYear).OrderByDescending(a => a.FinYear).FirstOrDefault();
     var applicableYears = Model.Select(a => new
     {
         FinYear = a.FinYear,
@@ -14,39 +17,8 @@
                 WageRate = a.Key.WageRate
             }).OrderBy(a=>a.FinYear);
 
-    var grades = Model.Select(a => new
-    {
-        Ordinal = a.Ordinal,
-        Grade = a.Grade,
-        Group = a.OccupationGroup,
-        Name = a.Occupation,
-        Rate = a.Amount,
-    })
-    .GroupBy(a => new { a.Ordinal, a.Grade, a.Group, a.Name, a.Rate })
-    .Select(a => new
-    {
-        Ordinal = a.Key.Ordinal,
-        Grade = a.Key.Grade,
-        Group = a.Key.Group,
-        Name = a.Key.Name,
-        Rate = a.Key.Rate
-    })
-     .GroupBy(a => new { a.Ordinal, a.Grade})
-      .Select(a => new
-      {
-          Ordinal = a.Key.Ordinal,
-          Grade = a.Key.Grade,
-          GroupCount = a.Select(b => b.Group).Distinct().Count(),
-          Count = a.Select(b => b.Name).Distinct().Count(),
-          Average = a.Average(b=>b.Rate)
-      })
-    .OrderBy(a => a.Ordinal);
 
 
-
-    var latestYear = Model.Select(a => a.FinYear).OrderByDescending(a => a).FirstOrDefault();
-    var current = Model.Where(a=>a.FinYear == latestYear).FirstOrDefault();
-    var previous = Model.Where(a => a.FinYear != latestYear).OrderByDescending(a => a.FinYear).FirstOrDefault();
     var wageAmountDifference = current.AveragePropertyValue - previous.AveragePropertyValue;
     var wageRateDifference = current.PropertyValue - previous.PropertyValue;
     var iteration = 1;
@@ -205,43 +177,17 @@
     </div>
 </div>
 
-<div class="row row-deck">
+<div class="row">
     <div class="col-xl-8 col-lg-12 col-md-12">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Wage Rate By Grade</h3>
-               
-            </div>
-            <div class="table-responsive card-body">
-                <table class="table table-striped  mb-0 border">
-                    <thead>
-                        <tr>
-                            <th class="wd-45p border-bottom-0 py-4 font-weight-bold">Grade</th>
-                            <th class="border-bottom-0 py-4 font-weight-bold">Occupation Groups</th>
-                            <th class="border-bottom-0 py-4 font-weight-bold">Occupations</th>
-                            <th class="border-bottom-0 py-4 font-weight-bold">Wage Rate (per hour)</th>
-                            <th class="border-bottom-0 py-4 font-weight-bold"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in grades)
-                        {
-                            <tr>
-                                <td><strong>@item.Ordinal</strong></td>
-                                <td><strong>@item.GroupCount</strong></td>
-                                <td><strong>@item.Count</strong></td>
-                                <td><strong>@item.Average.ToRandValue()</strong></td>
-                                <td><a href="/Grade/Index/@item.Ordinal" class="btn btn-primary btn-sm">view more</a></td>
-                            </tr>
-                        }
-                    
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        @Html.Partial("_Grade")
     </div>
     <div class="col-xl-4 col-md-12 col-lg-12">
         @Html.Partial("_DataSource")
+        <div class="row">
+            <div class="col-xl-12 col-md-12 col-lg-12">
+                <partial name="_FAQ" model="@Model" />
+            </div>
+        </div>
     </div>
 </div>
 <div class="row row-deck">

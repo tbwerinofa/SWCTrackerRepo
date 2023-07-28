@@ -1,14 +1,22 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SWCTracker.API;
 
 namespace SWCTracker.Controllers
 {
     public class WorkingConditionController : Controller
     {
-        // GET: WorkingConditionController
-        public ActionResult Index()
+        private readonly ITaskGradeAPIClient _clientBL;
+        public WorkingConditionController(ITaskGradeAPIClient clientBL)
         {
-            return View();
+            _clientBL = clientBL;
+        }
+
+        public async Task<ActionResult> Index(int id=1)
+        {
+            var model = await _clientBL.GetTaskGrades(id);
+
+            return View(model);
         }
     }
 }
