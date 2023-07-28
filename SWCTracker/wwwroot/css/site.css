@@ -54,3 +54,22 @@ input[type="checkbox"].input-validation-error {
     padding-left: 1px;
     position: absolute;
 }
+.grid-wrapper {
+    background-color: #fff !important;
+    overflow-x: inherit !important;
+}
+
+    .grid-wrapper table thead tr th {
+        background-color: #D6DCEE !important;
+        padding: 10px 0 10px 10px !important;
+        font-size: 13px !important;
+        vertical-align: middle;
+        border: 1px solid #D6DCEE !important;
+    }
+
+    .grid-wrapper table thead tr th {
+        background-color: #D6DCEE !important;
+        padding: 10px 0 10px 10px !important;
+        font-size: 13px !important;
+        vertical-align: middle;
+    }
