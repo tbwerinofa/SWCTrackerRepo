@@ -5,89 +5,20 @@
     var sector = Model.First();
 }
 
-
-
-                <div class="container">
-
-                    <!--Page header-->
-                    <div class="page-header">
-                        <div class="page-leftheader">
-                            <h4 class="page-title">Dashboard</h4>
-                        </div>
-                    </div>
-                    <!--End Page header-->
-                    <!--Row-->
+<div class="container">
+    <!--Page header-->
+    <div class="page-header">
+        <div class="page-leftheader">
+            <h4 class="page-title">Dashboard</h4>
+        </div>
+    </div>
 
     @{
         @await Component.InvokeAsync("TaskGrade", new { id =sector.Id })
     }
 
-                </div>
-@*      </div>
-            <!-- end app-content-->
-        </div>
-
-        <!--Footer-->
-        <footer class="footer">
-            <div class="container">
-                <div class="row align-items-center flex-row-reverse">
-                    <div class="col-md-12 col-sm-12 mt-3 mt-lg-0 text-center">
-                        Copyright © 2021 <a href="javascript:void(0)">Dashtic</a>. Designed by <a href="javascript:void(0)">Spruko Technologies Pvt.Ltd</a> All rights reserved.
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- End Footer-->
-
     </div>
 
-    <!-- Back to top -->
-    <a href="#top" id="back-to-top">
-        <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z" /></svg>
-    </a>
-
-    <!-- Jquery js-->
-    <script src="../../assets/js/vendors/jquery.min.js"></script>
-
-    <!-- Bootstrap5 js-->
-    <script src="../../assets/plugins/bootstrap/js/popper.min.js"></script>
-    <script src="../../assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-
-    <!--Othercharts js-->
-    <script src="../../assets/plugins/othercharts/jquery.sparkline.min.js"></script>
-
-    <!-- Circle-progress js-->
-    <script src="../../assets/js/vendors/circle-progress.min.js"></script>
-
-    <!-- Jquery-rating js-->
-    <script src="../../assets/plugins/rating/jquery.rating-stars.js"></script>
-
-    <!--Horizontal js-->
-    <script src="../../assets/plugins/horizontal-menu/horizontal.js"></script>
-
-    <!--Moment js-->
-    <script src="../../assets/plugins/moment/moment.js"></script>
-
-    <!-- Daterangepicker js-->
-    <script src="../../assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script src="../../assets/js/daterange.js"></script>
-
-    <!-- ECharts js-->
-    <script src="../../assets/plugins/echarts/echarts.js"></script>
-
-    <!--Chart js -->
-    <script src="../../assets/plugins/chart/chart.min.js"></script>
-    <script src="../../assets/plugins/chart/chart.extension.js"></script>
-
-    <!-- Index js-->
-    <script src="../../assets/js/index4.js"></script>
-
-    <!-- Custom js-->
-    <script src="../../assets/js/custom.js"></script>
-
-</body>
-
-</html>*@
 
 @section scripts{
     <!--Moment js-->
@@ -110,15 +41,7 @@
 
     $(document).ready(function () {
 
-            //var _scrollBars = $('.scrollbar');
-            //$.each(_scrollBars, function (index, object) {
-            //    var current = $(this);
-            //    const ps32 = new PerfectScrollbar(current[0], {
-            //        useBothWheelAxes: true,
-            //        suppressScrollX: true,
-            //    });
-            //});
-
+ 
             /*----P-scrolling JS ----*/
             const ps31 = new PerfectScrollbar('.countryscroll', {
                 useBothWheelAxes: true,
@@ -131,6 +54,113 @@
                 responsive: "true"
             }
         });
+
+            ChartBuilder.CPIvsRate();
     });
+
+        var ChartBuilder = {
+            CPIvsRate: function () {
+                objCPIIndex = [];
+                objWageRate = [];
+                objFinYear = [];
+
+
+                var dataContainer = $('.RateByYear');
+
+
+                $.each(dataContainer, function (index, record) {
+                    objCPIIndex.push($(this).data('cpiindex'));
+                    objWageRate.push($(this).data('wagerate'));
+                    objFinYear.push($(this).data('finyear'));
+                });
+
+                var chartdata3 = [
+                    {
+                        name: 'CPI Index',
+                        type: 'line',
+                        smooth: true,
+                        data: objCPIIndex,
+                        lineStyle: {
+                            normal: {
+                                opacity: 0.8,
+                                width: 4,
+                                curveness: 1
+                            }
+                        }
+                    },
+                    {
+                        name: 'Wage Rate',
+                        type: 'line',
+                        smooth: true,
+                        data: objWageRate,
+                        lineStyle: {
+                            normal: {
+                                opacity: 0.8,
+                                width: 4,
+                                curveness: 1
+                            }
+                        }
+                    }
+                ];
+
+                var option5 = {
+                    grid: {
+                        top: '6',
+                        right: '0',
+                        bottom: '17',
+                        left: '35',
+                    },
+                    tooltip: {
+                        show: true,
+                        showContent: true,
+                        alwaysShowContent: true,
+                        triggerOn: 'mousemove',
+                        trigger: 'axis',
+                        axisPointer:
+                        {
+                            label: {
+                                show: false,
+                            }
+                        }
+
+                    },
+                    xAxis: {
+                        data: objFinYear,
+                        axisLine: {
+                            lineStyle: {
+                                color: 'rgba(67, 87, 133, .09)'
+                            }
+                        },
+                        axisLabel: {
+                            fontSize: 10,
+                            color: '#8e9cad'
+                        }
+                    },
+                    yAxis: {
+                        splitLine: {
+                            lineStyle: {
+                                color: 'rgba(67, 87, 133, .09)'
+                            }
+                        },
+                        axisLine: {
+                            lineStyle: {
+                                color: 'rgba(67, 87, 133, .09)'
+                            }
+                        },
+                        axisLabel: {
+                            fontSize: 10,
+                            color: '#8e9cad'
+                        }
+                    },
+                    series: chartdata3,
+                    color: ['#4454c3', '#f72d66']
+                };
+                var chart5 = document.getElementById('echart1');
+                var barChart5 = echarts.init(chart5);
+                barChart5.setOption(option5);
+            }
+        }
     </script>
+
+
     }

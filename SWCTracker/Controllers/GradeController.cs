@@ -13,9 +13,9 @@ namespace SWCTracker.Controllers
             _clientBL = clientBL;
         }
         [HttpGet]
-        public async Task<IActionResult> Index(int id =1)
+        public async Task<IActionResult> Index(int id)
         {
-            var model = await _clientBL.GetCalculator(id);
+            var model = await _clientBL.GetWageRateByGradeAsync(1,id);
             return View(model);
         }
 

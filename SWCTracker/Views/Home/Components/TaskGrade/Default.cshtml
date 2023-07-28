@@ -43,8 +43,12 @@
     .OrderBy(a => a.Ordinal);
 
 
-    var current = Model.FirstOrDefault();
+
     var latestYear = Model.Select(a => a.FinYear).OrderByDescending(a => a).FirstOrDefault();
+    var current = Model.Where(a=>a.FinYear == latestYear).FirstOrDefault();
+    var previous = Model.Where(a => a.FinYear != latestYear).OrderByDescending(a => a.FinYear).FirstOrDefault();
+    var wageAmountDifference = current.AveragePropertyValue - previous.AveragePropertyValue;
+    var wageRateDifference = current.PropertyValue - previous.PropertyValue;
     var iteration = 1;
     var background = "bg-success";
 }
@@ -76,9 +80,20 @@
         <div class="card">
             <div class="card-body text-center">
                 <span class="fs-50 icon-muted"><i class="si si-chart icon-dropshadow-info text-info"></i></span>
-                <p class=" mb-1">Bounce Rate</p>
-                <h2 class="mb-1 fs-40 font-weight-bold">52.12%</h2>
-                <small class="mb-1 text-muted"><small class="text-success"><i class="fa fa-caret-up  me-1"></i> 19.8</small> vs 36,144 than last month</small>
+                <p class=" mb-1">Wage Rate</p>
+                <h4 class="mb-1 fs-40 font-weight-bold">@current.PropertyValue %</h4>
+                <small class="mb-1 text-muted">
+                    @if (wageRateDifference < 0)
+                    {
+                        <small class="text-danger"><i class="fa fa-caret-down  me-1"></i> @(wageRateDifference)%</small>
+                    }
+                    else
+                    {
+                        <small class="text-success"><i class="fa fa-caret-up  me-1"></i> @(wageRateDifference * -1)%</small>
+                    }
+
+                    vs @previous.PropertyValue % last year
+                </small>
             </div>
         </div>
     </div>
@@ -86,31 +101,40 @@
         <div class="card">
             <div class="card-body text-center">
                 <span class="fs-50 icon-muted"><i class="si si-wallet icon-dropshadow-danger text-danger"></i></span>
-                <p class=" mb-1 ">Revenue Status</p>
-                <h2 class="mb-1 fs-40 font-weight-bold">$2,206.62</h2>
-                <small class="mb-1 text-muted"><small class="text-danger"><i class="fa fa-caret-down  me-1"></i> 43.2</small> vs $5,699 than last month</small>
+                <p class=" mb-1 ">Average Wage</p>
+                <h2 class="mb-1 fs-40 font-weight-bold">@current.AveragePropertyValue.ToRandValue() /hr</h2>
+                <small class="mb-1 text-muted">
+                    @if (wageAmountDifference <0)
+                    {
+                        <small class="text-danger"><i class="fa fa-caret-down  me-1"></i> @(wageAmountDifference)</small>
+                    }
+                    else
+                    {
+                        <small class="text-success"><i class="fa fa-caret-up  me-1"></i> @(wageAmountDifference * -1)</small>
+                    }
+
+                    vs @previous.AveragePropertyValue.ToRandValue() last year
+                    </small>
             </div>
         </div>
     </div>
     <div class="col-xl-12 col-md-12 col-lg-12">
         <div class="row">
             <div class="col-xl-5 col-lg-5 col-md-12">
+
                 <div class="card">
-                    <div class="row">
-                        <div class="col-xl-12 col-md-12 col-lg-12">
-                            <div class="card-header">
-                                <h4 class="card-title">Wage Rate vs CPI Index</h4>
+                    <div class="card-header">
+                        <h3 class="card-title">Wage Rate vs CPI Index</h3>
+                        
+                    </div>
+                    <div class="card-body">
+                        <div id="echart1" class="h-300"></div>
+                        <div class="row mt-5">
+                            <div class="col text-center">
+                                <span class="text-muted float-start"><div class="w-3 h-3 bg-secondary br-3 me-1 mt-1 float-start"></div> Wage Rate</span>
                             </div>
-                            <div class="card-body text-center">
-                                <div id="myfirstchart" class="BarChartShadow" style="height: 285px; -webkit-tap-highlight-color: transparent; user-select: none; position: relative; background: transparent;" _echarts_instance_="ec_1690462054282"><div style="position: relative; overflow: hidden; width: 528px; height: 285px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"><canvas width="528" height="285" data-zr-dom-id="zr_0" style="position: absolute; left: 0px; top: 0px; width: 528px; height: 285px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div><div style="position: absolute; display: block; border-style: solid; white-space: nowrap; z-index: 9; transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s, top 0.4s cubic-bezier(0.23, 1, 0.32, 1) 0s; background-color: rgba(50, 50, 50, 0.7); border-width: 0px; border-color: rgb(51, 51, 51); border-radius: 4px; color: rgb(255, 255, 255); font: 14px / 21px &quot;Microsoft YaHei&quot;; padding: 5px; left: 282px; top: 30px;">Jun<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#4454c3;"></span>Page Views: 5,643<br><span style="display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px;background-color:#f72d66;"></span>New Visitors: 4,534</div></div>
-                                <div class="row mt-5">
-                                    <div class="col text-center">
-                                        <span class="text-muted float-end"><div class="w-3 h-3 bg-primary br-3 me-1 mt-1 float-start"></div> CPI Index</span>
-                                    </div>
-                                    <div class="col text-center">
-                                        <span class="text-muted float-start"><div class="w-3 h-3 bg-secondary br-3 me-1 mt-1 float-start"></div> Wage Rate</span>
-                                    </div>
-                                </div>
+                            <div class="col text-center">
+                                <span class="text-muted float-end"><div class="w-3 h-3 bg-primary br-3 me-1 mt-1 float-start"></div> CPI Index</span>
                             </div>
                         </div>
                     </div>
@@ -137,11 +161,16 @@
                                 {
                                     var rateChange = item.WageRate - item.CPIIndex;
                                     <tr>
-                                        <td>@item.FinYear</td>
+                                        <td>
+
+                                            <input type="hidden" class="RateByYear" name="RateByYear" data-finyear="@item.FinYear" data-cpiindex="@item.CPIIndex" data-wagerate="@item.WageRate" />
+
+                                            @item.FinYear
+                                            </td>
                                         <td>
                                             @item.WageRate %
                                         </td>
-                                        <td><span class="">@item.CPIIndex</span></td>
+                                        <td><span class="">@item.CPIIndex %</span></td>
                                         <td>
                                             @if (rateChange >= 0)
                                         {

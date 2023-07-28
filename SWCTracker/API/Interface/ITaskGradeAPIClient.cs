@@ -13,5 +13,7 @@ namespace SWCTracker.API
           int parentId);
 
         Task<WageRateDetailResultSet> GetWageRateAsync(int sectorId, int occupationId);
+
+        Task<IEnumerable<WageRateDetailResultSet>> GetWageRateByGradeAsync(int id, int grade);
     }
 }

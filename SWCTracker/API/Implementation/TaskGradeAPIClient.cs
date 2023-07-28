@@ -82,6 +82,14 @@ namespace SWCTracker.API
             return model;
         }
 
+        public async Task<IEnumerable<WageRateDetailResultSet>> GetWageRateByGradeAsync(int id,int grade)
+        {
+            var resultSet = await GetTaskGrades(id);
+
+            return resultSet.Where(a=>a.Ordinal == grade).AsEnumerable();
+
+        }
+
         public async Task<IEnumerable<SelectListItem>> GetOccupationSelectListItem_ByParentId(
             int sectorId,
           int parentId)
