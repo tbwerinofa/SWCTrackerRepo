@@ -2,6 +2,13 @@ using SWCTracker.API;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.Configure<CookiePolicyOptions>(options =>
+{
+    // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+    options.CheckConsentNeeded = context => true;
+    options.MinimumSameSitePolicy = SameSiteMode.None;
+});
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient<ISubSectorAPIClient, SubSectorAPIClient>();
@@ -19,7 +26,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
+app.UseCookiePolicy();
 app.UseRouting();
 
 app.UseAuthorization();
