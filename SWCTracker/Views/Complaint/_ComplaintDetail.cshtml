@@ -79,10 +79,10 @@
                         @Html.LabelFor(model => model.ComplaintDetail.ProcessCompliant, new { @class = "control-label col-md-8 input-sm field-required" })
                         <div class="col-md-4">
                             <label class="radio-inline">
-                                <input type="radio" name="ComplaintDetail_ProcessCompliant" value="true"> Yes
+                                <input type="radio" name="ComplaintDetail.ProcessCompliant" value="true"> Yes
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="ComplaintDetail_ProcessCompliant" value="false"> No
+                                <input type="radio" name="ComplaintDetail.ProcessCompliant" value="false"> No
                             </label>
                         </div>
                     </div><!--form group-->
@@ -98,7 +98,7 @@
             <div class="row">
 
                 <div class="col-md-4">
-                                <label class="control-label col-md-8 input-sm" for="ComplaintDetail_ProcessCompliant">Describe the procedures followed:</label>
+                                <label class="control-label col-md-8 input-sm" for="ComplaintDetail.ProcessDescription">Describe the procedures followed:</label>
                     </div>
                         <div class="col-md-8">
                             @Html.TextAreaFor(model => model.ComplaintDetail.ProcessDescription, new { @class = "form-control input-sm", @rows = 6 })

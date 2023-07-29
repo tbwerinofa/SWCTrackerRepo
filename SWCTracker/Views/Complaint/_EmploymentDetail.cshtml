@@ -128,7 +128,7 @@
                                             <path d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 2v3H4V5h16zM4 21V10h16v11H4z"></path>
                                             <path d="M4 5.01h16V8H4z" opacity=".3"></path></svg>
                                     </div>
-                                </div><input class="form-control fc-datepicker hasDatepicker" placeholder="MM/DD/YYYY" required type="date" id="@Model.EmploymentDetail.StartDate">
+                                </div><input class="form-control fc-datepicker hasDatepicker" placeholder="MM/DD/YYYY" required type="date" id="EmploymentDetail.StartDate">
                             </div>
                             @Html.ValidationMessageFor(model => model.EmploymentDetail.StartDate)
                         </div>
@@ -146,7 +146,7 @@
                                             <path d="M4 5.01h16V8H4z" opacity=".3"></path>
                                         </svg>
                                     </div>
-                                </div><input class="form-control fc-datepicker hasDatepicker" placeholder="MM/DD/YYYY" type="date" id="@Model.EmploymentDetail.LeftDate">
+                                </div><input class="form-control fc-datepicker hasDatepicker" placeholder="MM/DD/YYYY" type="date" id="EmploymentDetail.LeftDate">
                             </div>
                             @Html.ValidationMessageFor(model => model.EmploymentDetail.LeftDate)
                         </div>
@@ -154,7 +154,7 @@
                     
 
                     <div class="form-group mb-4 row">
-                        <label class="control-label col-md-4 input-sm field-required" for="EmploymentDetail_Salary">Salary/Wage (per hour)</label>
+                        <label class="control-label col-md-4 input-sm field-required" for="EmploymentDetail.Salary">Salary/Wage (per hour)</label>
                         <div class="col-md-8">
                             <input class="form-control input-sm text-box single-line decimal-number-only" data-val="true"
                             data-val-number="The field Salary/Wage (per hour) must be a number."

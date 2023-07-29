@@ -22,15 +22,15 @@ namespace SWCTracker.Models
 
         [StringLength(250, ErrorMessage = "must be less than 250 characters")]
         [Display(Name = "Summary nature of complaint")]
-        [Required(ErrorMessage = "required")]
+        [Required(ErrorMessage = "nature of complaint summary required")]
         public string? Summary { get; set; }
 
         [Display(Name = "Sector")]
-        [Required(ErrorMessage = "required")]
+        [Required(ErrorMessage = "sector required")]
         public IEnumerable<int>? SectorIds { get; set; }
 
         [Display(Name = "Nature of Complaint")]
-        [Required(ErrorMessage = "required")]
+        [Required(ErrorMessage = "nature of complaint required")]
         public IEnumerable<int>? ComplaintTypeIds { get; set; }
 
         public IEnumerable<SelectListItem>? Sectors { get; set; }

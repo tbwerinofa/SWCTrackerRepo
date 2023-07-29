@@ -1,6 +1,6 @@
 ﻿var $processDescription = $('#ProcessDescription');
 $divProcessCompliant = $('#div-process-compliant');
-$isProcessCompliant = $('#form-main input[name="ComplaintDetail_ProcessCompliant"]');
+$isProcessCompliant = $('#form-main input[name="ComplaintDetail.ProcessCompliant"]');
 $inputProcessCompliant = $('#inputProcessCompliant');
 var $complaintWizard = $('#complaintWizard');
 $formMain = $('#form-main');
