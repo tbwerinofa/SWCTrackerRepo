@@ -1,4 +1,4 @@
-﻿namespace SWCTracker.Models
+﻿namespace BusinessObject
 {
     public class DashboardItem
     {

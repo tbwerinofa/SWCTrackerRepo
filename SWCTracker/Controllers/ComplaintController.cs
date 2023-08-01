@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using SWCTracker.API;
-using SWCTracker.Models;
+using BusinessObject;
 
 namespace SWCTracker.Controllers
 {

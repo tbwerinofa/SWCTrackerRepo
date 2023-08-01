@@ -1,4 +1,4 @@
-﻿using SWCTracker.Models;
+﻿using BusinessObject;
 namespace SWCTracker.API
 {
     public class SubSectorAPIClient: ISubSectorAPIClient

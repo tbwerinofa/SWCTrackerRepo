@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
-namespace SWCTracker.Models
+namespace BusinessObject
 {
     public class EmploymentDetailViewModel
     {

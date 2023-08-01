@@ -1,5 +1,4 @@
-﻿using SWCTracker.Models;
-
+﻿using BusinessObject;
 namespace SWCTracker.API
 {
     public interface IComplaintAPIClient

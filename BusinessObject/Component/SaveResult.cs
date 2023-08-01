@@ -1,5 +1,5 @@
 ﻿
-namespace SWCTracker.Models
+namespace BusinessObject
 {
 	public class SaveResult
 	{

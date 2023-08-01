@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using SWCTracker.Models;
+using BusinessObject;
 
 namespace SWCTracker.API
 {
