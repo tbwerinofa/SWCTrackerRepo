@@ -113,9 +113,13 @@ var PageEvents = {
         if (isNegativeVariance) {
             $('.percent-diference').removeClass('text-success');
             $('.percent-diference').addClass('text-danger');
+            $('.variance-rate').removeClass('text-success');
+            $('.variance-rate').addClass('text-danger');
         } else {
             $('.percent-diference').removeClass('text-danger');
             $('.percent-diference').addClass('text-success');
+            $('.variance-rate').removeClass('text-danger');
+            $('.variance-rate').addClass('text-success');
         }
 
         var chart = '<div class="mx-auto chart-circle chart-circle-primary chart-circle-lg  mt-sm-0 mb-0 donutShadow" data-value="'
@@ -134,7 +138,8 @@ var PageEvents = {
             sectionContainer.find('.my-rate').html(ValueFormatter.ToRand(applicableRate))
             sectionContainer.find('.totalunits').html(totalUnits)
             sectionContainer.find('.expected-rate').html(ValueFormatter.ToRand(applicableExpectedRate))
-            sectionContainer.find('.variance-rate').html(ValueFormatter.ToRand(variance));
+        sectionContainer.find('.variance-rate').html(ValueFormatter.ToRand(variance));
+
     },
     LoadChart: function () {
         if ($('body .chart-circle-primary').length) {
