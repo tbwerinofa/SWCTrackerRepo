@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+﻿using BusinessObject;
+using Microsoft.AspNetCore.Mvc;
 using SWCTracker.API;
-using BusinessObject;
 
 namespace SWCTracker.Controllers
 {
@@ -18,14 +17,21 @@ namespace SWCTracker.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> List()
+        {
+            ComplaintViewModel model = await _modelBL.GetModelAsync();
+            return View(model);
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<JsonResult> SaveModel(ComplaintViewModel viewModel)
         {
 
-            SaveResult resultSet = new SaveResult();
+            SaveResult resultSet = new();
 
-            if (viewModel.ComplaintDetail.ProcessCompliant)
+            if (viewModel.ComplaintDetail!.ProcessCompliant)
             {
                 ModelState.Remove("ComplaintDetail.ProcessDescription");
             }

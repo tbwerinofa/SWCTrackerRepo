@@ -23,6 +23,20 @@
     var wageRateDifference = current.PropertyValue - previous.PropertyValue;
     var iteration = 1;
     var background = "bg-success";
+    string activeClass = "active";
+    var occupationGroups = Model.Where(a => a.FinYear == latestYear).Select(a => new
+    {
+        Group = a.OccupationGroup,
+        Id = a.OccupationGroupId,
+
+    })
+        .GroupBy(a => new { a.Group, a.Id })
+        .Select(a => new
+        {
+    Id = a.Key.Id,
+    Group = a.Key.Group,
+    Count = a.Count()
+        });
 }
 <div class="row">
     <div class="col-xl-6 col-md-12 col-lg-12">
@@ -161,7 +175,7 @@
                         </table>
                     </div>
                     <div class="card-footer">
-                        <a href="javascript:void(0)" class="btn btn-lg btn-block btn-white">View All</a>
+                        <a href="#" class="btn btn-lg btn-block btn-white">View All</a>
                     </div>
                 </div>
             </div>
@@ -197,40 +211,75 @@
             <div class="card-title">Latest Wage rates By Occupation <span class="badge bg-primary rounded-pill">(Year: @latestYear)</span></div>
         </div>
         <div class="card-body grid-wrapper">
-            <div class="table-responsive invoice-table-responsive">
-                <table id="table-results" class="table card-table table-vcenter mb-0 border">
-                    <thead>
-                        <tr>
-                            <th>Grade</th>
-                            <th>Group</th>
-                            <th>Occupation</th>
-                            <th class="text-right">% increase</th>
-                            <th class=text-right>Hourly Rate</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var record in Model.Where(a => a.FinYear == latestYear).OrderBy(a => a.Ordinal).ThenBy(a => a.OccupationGroup).ThenBy(a => a.Occupation).ThenBy(a => a.Amount))
-                        {
-                            if(iteration !=record.Ordinal)
+
+
+                <div class="panel panel-primary">
+                    <div class="tab-menu-heading">
+                        <div class="tabs-menu ">
+                            <!-- Tabs -->
+                            <ul class="nav panel-tabs">
+                                @foreach(var occupationGroup in occupationGroups.OrderBy(a=>a.Group))
+                                {
+                                    <li class=""><a href="#tab_@occupationGroup.Id" class="@activeClass" data-bs-toggle="tab">@occupationGroup.Group</a></li>
+
+                                    activeClass = string.Empty;
+                                }
+                                @{
+                                    activeClass = "active";
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body tabs-menu-body">
+                        <div class="tab-content">
+                            @foreach (var occupationGroup in occupationGroups.OrderBy(a => a.Group))
                             {
-                                background = background == "bg-primary" ? "bg-success" : "bg-primary";
-                                    }
+                                <div class="tab-pane @activeClass " id="tab_@occupationGroup.Id">
+
+                                    <div class="table-responsive invoice-table-responsive">
+                                        <table id="table-results" class="table card-table table-vcenter mb-0 border">
+                                            <thead>
+                                                <tr>
+                                                    <th>Grade</th>
+                                                    <th>Occupation</th>
+                                                    <th class="text-right">% increase</th>
+                                                    <th class=text-right>Hourly Rate</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var record in Model.Where(a => a.FinYear == latestYear && a.OccupationGroupId == occupationGroup.Id).OrderBy(a => a.Ordinal).ThenBy(a => a.OccupationGroup).ThenBy(a => a.Occupation).ThenBy(a => a.Amount))
+                                                {
+                                                    if (iteration != record.Ordinal)
+                                                    {
+                                                        background = background == "bg-primary" ? "bg-success" : "bg-primary";
+                                                    }
 
 
-                            <tr class="">
-                                <td class="font-weight-semibold">
-                                    @record.Ordinal
-                                </td>
-                                <td><strong>@record.OccupationGroup</strong></td>
-                                <td><strong>@record.Occupation</strong></td>
-                                <td class="@background text-right text-white"><strong>@record.PropertyValue %</strong></td>
-                                <td class="@background text-right text-white">@record.Amount.ToRandValue()</td>
-                            </tr>
-                            iteration = record.Ordinal??0;
-                        }
-                    </tbody>
-                </table>
-            </div>
+                                                    <tr class="">
+                                                        <td class="font-weight-semibold">
+                                                            @record.Ordinal
+                                                        </td>
+                                                        <td><strong>@record.Occupation</strong></td>
+                                                        <td class="@background text-right text-white"><strong>@record.PropertyValue %</strong></td>
+                                                        <td class="@background text-right text-white">@record.Amount.ToRandValue()</td>
+                                                    </tr>
+                                                    iteration = record.Ordinal ?? 0;
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+
+                                   
+
+                                activeClass = string.Empty;
+                            }
+                        </div>
+                    </div>
+                </div>
+    
         </div>
     </div>
     </div>

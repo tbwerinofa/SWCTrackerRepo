@@ -66,15 +66,16 @@
                 <div>
                     <div id="tabs-1">
                         <p>
-                            The highest Wage Rate increase of @higestRate.WageRate % is <strong>was negotiated in the  @higestRate.FinYear </strong> with <strong>
-                                </strong>
+                            The highest Wage Rate increase of
+                            <strong>@higestRate.WageRate % </strong>
+                                    was negotiated in the year  <strong>@higestRate.FinYear </strong>
                         </p>
                         <p class="well">
 
 
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Stats (Top 5 Wage Rate Increases) &nbsp;<i class="fas fa-trophy"></i></h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Stats (Top 5 Wage Rate Increases) &nbsp;<i class="fa fa-info-circle"></i></h6>
                                 </div>
                                 <div class="card-body grid-wrapper">
                                     <table class="table table-bordered table-condensed small">
@@ -99,14 +100,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-@*                                <div class="card-footer text-primary">
-
-                                    <small>
-                                        <i class="fa fa-info-circle"></i>&nbsp;
-                                        <i>Our information is based on the information we have collected in our database for the period @earliestYear - @latestYear</i>
-
-                                    </small>
-                                </div>*@
                             </div>
                         </p>
                     </div> <!--Most popular race-->
@@ -129,7 +122,7 @@
                             The most effective rate change is <strong> @highestEffectiveRate.EffectiveRate %</strong> in the year <strong>@highestEffectiveRate.FinYear</strong><br />
                             The Wage Rate was
                             <i>
-                                @highestEffectiveRate.WageRate %
+                                <strong>  @highestEffectiveRate.WageRate %</strong>
                             </i> Vs <strong> @highestEffectiveRate.CPIIndex %</strong> inflation.
                         </p>
                         <p class="well">
@@ -137,7 +130,7 @@
 
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Stats &nbsp;<i class="fa fa-chart"></i></h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Stats (Top 5 Effective Wage Rate Increases) &nbsp;<i class="fa fa-info-circle"></i></h6>
                                 </div>
                                 <div class="card-body grid-wrapper">
                                     <table class="table table-bordered table-condensed small">
@@ -231,11 +224,9 @@
                             @{
                                 var highestGrades = wageRateByOccupationGroup.GroupBy(a => new
                                 {
-                                    a.Group,
-                                    a.Name,
-                                    a.Ordinal,
-                                    a.Amount
-                                }).Select((a,b) => new
+                                    a.Ordinal
+                                })
+                                .Select((a,b) => new
                                 {
                                     Rank = b+1,
                                     Ordinal = a.Key.Ordinal,
@@ -252,10 +243,10 @@
 
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Stats &nbsp;<i class="fa fa-list"></i></h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">The top 5 Grade with the highest number of occupations are<i class="fa fa-info-circle"></i></h6>
                                 </div>
                                 <div class="card-body grid-wrapper">
-                                    The top 5 Grade with the highest number of occupations are
+                                    
                                     <table class="table table-bordered table-condensed small">
                                         <thead>
                                             <tr>
@@ -266,14 +257,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @{
+                                                iteration = 1;
+                                            }
                                             @foreach (var item in highestGrades)
                                             {
                                                 <tr>
-                                                    <td>@item.Rank</td>
+                                                    <td>@iteration</td>
                                                     <td>@item.Ordinal</td>
                                                     <td>@item.Count</td>
-                                                    <td>@item.Amount</td>
+                                                    <td>@item.Amount.ToRandValue()</td>
                                                 </tr>
+                                                iteration++;
                                             }
                                         </tbody>
                                     </table>
@@ -299,28 +294,32 @@
 
                             <div class="card shadow mb-4">
                                 <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Stats &nbsp;<i class="fa fa-list"></i></h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Stats (Top 5 Least paying occupations) &nbsp;<i class="fa fa-info-circle"></i></h6>
                                 </div>
                                 <div class="card-body grid-wrapper">
                                     Our information is based on the following statistics
                                     <table class="table table-bordered table-condensed small">
                                         <thead>
                                             <tr>
+                                                <th>Rank</th>
                                                 <th>Grade</th>
-                                                <th>Group</th>
                                                 <th>Name</th>
                                                 <th>Amount</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            @{
+                                                iteration = 1;
+                                            }
                                             @foreach (var item in @wageRateByOccupationGroup.OrderBy(a => a.Amount).Take(5))
                                             {
                                                 <tr>
+                                                    <td>@iteration</td>
                                                     <td>@item.Ordinal</td>
-                                                    <td>@item.Group</td>
                                                     <td>@item.Name</td>
                                                     <td>@item.Amount</td>
                                                 </tr>
+                                                iteration++;
                                             }
                                         </tbody>
                                     </table>
