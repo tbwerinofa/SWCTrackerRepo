@@ -1,6 +1,7 @@
-﻿using BusinessObject;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using SWCTracker.API;
+using BusinessObject;
 
 namespace SWCTracker.Controllers
 {
@@ -29,9 +30,9 @@ namespace SWCTracker.Controllers
         public async Task<JsonResult> SaveModel(ComplaintViewModel viewModel)
         {
 
-            SaveResult resultSet = new();
+            SaveResult resultSet = new SaveResult();
 
-            if (viewModel.ComplaintDetail!.ProcessCompliant)
+            if (viewModel.ComplaintDetail.ProcessCompliant)
             {
                 ModelState.Remove("ComplaintDetail.ProcessDescription");
             }

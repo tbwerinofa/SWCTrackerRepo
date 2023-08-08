@@ -9,11 +9,17 @@
     <link rel="stylesheet" href="~/SWCTracker.styles.css" asp-append-version="true" />
 </head>
 <body class="light-mode">
-   @Html.Partial("_Head")
+    <!-- Google Tag Manager (noscript) -->
+    <noscript>
+        <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5V56C22L"
+                height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+  <partial name="_Head" />
 
     <div class="page">
         <div class="page-main">
-   @Html.Partial("_NavBar")
+            <partial name="_NavBar" />
             <div class="app-content page-body">
                 <div class="container">
             @RenderBody()
@@ -22,20 +28,11 @@
             <!-- end app-content-->
         </div>
 
-        @Html.Partial("_Footer")
+        <partial name="_Footer" />
 
     </div>
-    @Html.Partial("_FooterScripts")
+    <partial name="_FooterScripts" />
 
-@*
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - SWCTracker - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>*@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
