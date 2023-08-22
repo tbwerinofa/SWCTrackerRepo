@@ -22,5 +22,7 @@ namespace BusinessObject
         public string? MeasurementUnit { get; set; }
         public string? Symbol { get; set; }
         public decimal CPIIndex { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }
