@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using BusinessObject;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Caching.Memory;
 using SWCTracker.Models;
-using System.Collections.Generic;
-using System.Reflection;
-using BusinessObject;
 
 namespace SWCTracker.API
 {
