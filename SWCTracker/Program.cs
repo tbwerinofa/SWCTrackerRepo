@@ -10,7 +10,7 @@ builder.Services.Configure<CookiePolicyOptions>(options =>
 });
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 builder.Services.AddHttpClient<ISubSectorAPIClient, SubSectorAPIClient>();
 builder.Services.AddHttpClient<IComplaintAPIClient, ComplaintAPIClient>();
 builder.Services.AddHttpClient<ITaskGradeAPIClient, TaskGradeAPIClient>();
