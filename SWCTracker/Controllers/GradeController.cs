@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using SWCTracker.API;
-using SWCTracker.Models;
 
 namespace SWCTracker.Controllers
 {

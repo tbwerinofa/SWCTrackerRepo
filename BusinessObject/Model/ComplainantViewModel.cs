@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SWCTracker.Models
+namespace BusinessObject
 {
     public class ComplainantViewModel
     {

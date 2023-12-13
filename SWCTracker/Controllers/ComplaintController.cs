@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using SWCTracker.API;
-using SWCTracker.Models;
+using BusinessObject;
 
 namespace SWCTracker.Controllers
 {
@@ -17,6 +17,13 @@ namespace SWCTracker.Controllers
             ComplaintViewModel model =  await _modelBL.GetModelAsync();
             return View(model);
         }
+
+        public async Task<IActionResult> List()
+        {
+            ComplaintViewModel model = await _modelBL.GetModelAsync();
+            return View(model);
+        }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]

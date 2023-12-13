@@ -5,25 +5,25 @@
                         <h4>Address</h4>
     </div>
     <div  id="div-postal-address" style="display:none"  class="card-body">
-        @Html.HiddenFor(a => a.Employee.Address.Id)
+        @Html.HiddenFor(a => a.Employee!.Address!.Id)
 
         <div class="row">
 
             <div class="col">
 
                 <div class="form-group row">
-                    @Html.LabelFor(m => m.Employee.Address.Line1, htmlAttributes: ModelConstant.LabelRequired)
+                    @Html.LabelFor(m => m.Employee!.Address!.Line1, htmlAttributes: ModelConstant.LabelRequired)
                     <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.Employee.Address.Line1,new { htmlAttributes = ModelConstant.FormControlInp })
-                        @Html.ValidationMessageFor(m => m.Employee.Address.Line1)
+                        @Html.TextBoxFor(m => m.Employee!.Address!.Line1,new { htmlAttributes = ModelConstant.FormControlInp })
+                        @Html.ValidationMessageFor(m => m.Employee!.Address!.Line1)
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    @Html.LabelFor(m => m.Employee.Address.Line2, htmlAttributes: ModelConstant.LabelStandard)
+                    @Html.LabelFor(m => m.Employee!.Address!.Line2, htmlAttributes: ModelConstant.LabelStandard)
                     <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.Employee.Address.Line2,new { htmlAttributes = ModelConstant.FormControlInp })
-                        @Html.ValidationMessageFor(m => m.Employee.Address.Line2)
+                        @Html.TextBoxFor(m => m.Employee!.Address!.Line2,new { htmlAttributes = ModelConstant.FormControlInp })
+                        @Html.ValidationMessageFor(m => m.Employee!.Address!.Line2)
                     </div>
                 </div>
 
@@ -32,26 +32,26 @@
             <div class="col">
 
                 <div class="form-group row">
-                    @Html.LabelFor(m => m.Employee.Address.Suburb, htmlAttributes: ModelConstant.LabelRequired)
+                    @Html.LabelFor(m => m.Employee!.Address!.Suburb, htmlAttributes: ModelConstant.LabelRequired)
                     <div class="col-md-8">
-                        @Html.TextBoxFor(m => m.Employee.Address.Suburb,new { htmlAttributes = ModelConstant.FormControlInp })
-                        @Html.ValidationMessageFor(m => m.Employee.Address.Suburb)
+                        @Html.TextBoxFor(m => m.Employee!.Address!.Suburb,new { htmlAttributes = ModelConstant.FormControlInp })
+                        @Html.ValidationMessageFor(m => m.Employee!.Address!.Suburb)
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    @Html.LabelFor(m => m.Employee.Address.Code, htmlAttributes: ModelConstant.LabelStandard)
+                    @Html.LabelFor(m => m.Employee!.Address!.Code, htmlAttributes: ModelConstant.LabelStandard)
                     <div class="col-md-8">
-                        @Html.EditorFor(m => m.Employee.Address.Code, new { htmlAttributes = new { @class = "form-control input-sm number-only", @maxlength = 10 } })
-                        @Html.ValidationMessageFor(m => m.Employee.Address.Code)
+                        @Html.EditorFor(m => m.Employee!.Address!.Code, new { htmlAttributes = new { @class = "form-control input-sm number-only", @maxlength = 10 } })
+                        @Html.ValidationMessageFor(m => m.Employee!.Address!.Code)
                     </div>
                 </div>
 
                 <div class="form-group row">
-                    @Html.LabelFor(m => m.Employee.Address.CityId, htmlAttributes: ModelConstant.LabelRequired)
+                    @Html.LabelFor(m => m.Employee!.Address!.CityId, htmlAttributes: ModelConstant.LabelRequired)
                     <div class="col-md-8">
-                        @Html.DropDownListFor(m => m.Employee.Address.CityId, Model.Cities, htmlAttributes:  ModelConstant.FormControlInp)
-                        @Html.ValidationMessageFor(m => m.Employee.Address.CityId)
+                        @Html.DropDownListFor(m => m.Employee!.Address!.CityId, Model.Cities, htmlAttributes:  ModelConstant.FormControlInp)
+                        @Html.ValidationMessageFor(m => m.Employee!.Address!.CityId)
                     </div>
                 </div>
 

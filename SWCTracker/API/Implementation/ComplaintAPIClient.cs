@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using SWCTracker.Models;
-using System.Net;
+﻿using BusinessObject;
 using System.Net.Http.Formatting;
-using System.Reflection;
 
 namespace SWCTracker.API
 {
@@ -26,15 +23,6 @@ namespace SWCTracker.API
 
             return resultSet;
         }
-
-        public AddressViewModel GetAddressModel()
-        {
-            return new AddressViewModel
-            {
-                Cities = IQueryableExtensions.DefaultSelectListItem()
-            };
-        }
-
         #endregion
 
         #region Save

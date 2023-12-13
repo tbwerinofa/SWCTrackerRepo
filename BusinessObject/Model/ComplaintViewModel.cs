@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
 
-namespace SWCTracker.Models
+namespace BusinessObject
 {
     public class ComplaintViewModel
     {
